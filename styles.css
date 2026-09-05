@@ -1,0 +1,19 @@
+
+:root{--bg:#0f1512;--panel:#18201c;--border:#344139;--text:#f5f2e9;--muted:#a8b1ac;--gold:#d4a647;--green:#65c484;--yellow:#d7a94b;--red:#cf756b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#0f1512f2;z-index:2}
+h1{margin:0}header p{margin:2px 0 0;color:var(--muted)}button,input,textarea,select{font:inherit}
+button{border:1px solid var(--border);background:#222d27;color:var(--text);padding:9px 12px;border-radius:10px;cursor:pointer}
+header>button,.primary{background:var(--gold);color:#231a08;border:0;font-weight:800}
+main{max-width:950px;margin:auto;padding:28px 18px}.statusline{color:var(--muted);font-size:13px;margin-bottom:18px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.filter.active{border-color:#6d8177;background:#2e3b34}
+#tasks{display:grid;gap:12px}.card{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center}.pill{font-size:12px;font-weight:800;padding:5px 9px;border-radius:999px}
+.planned{background:#2b3430}.doing{background:#463a1c;color:#ffdc86}.done{background:#183b27;color:#92e4ad}.cancelled{background:#402625;color:#f0a098}
+.card h3{margin:14px 0 5px}.card p{margin:0;color:var(--muted);white-space:pre-wrap}.card img{width:100%;max-height:320px;object-fit:cover;border-radius:10px;margin-top:12px}
+.quick{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.quick button{font-size:13px;padding:7px 9px}.edit{background:none;color:var(--muted)}
+dialog{width:min(520px,calc(100vw - 28px));background:#151d19;color:var(--text);border:1px solid var(--border);border-radius:16px;padding:20px}
+dialog::backdrop{background:#0009}form h2{margin-top:0}label{display:block;margin:13px 0;color:#cbd1ce}
+input,textarea,select{width:100%;margin-top:6px;background:#0d1310;color:#fff;border:1px solid var(--border);border-radius:9px;padding:10px}
+.actions{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;margin-top:18px}.danger{color:#ffaaa1}.hidden{display:none!important}
+@media(max-width:600px){header{padding:14px}main{padding:18px 12px}.actions{grid-template-columns:1fr 1fr}.actions span{display:none}}

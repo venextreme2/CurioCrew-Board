@@ -1,0 +1,51 @@
+
+const C={planned:["Запланировано","planned"],doing:["В разработке","doing"],done:["СДЕЛАНО","done"],cancelled:["Не делаем","cancelled"]};
+const sb=supabase.createClient(window.CURIOCREW_CONFIG.supabaseUrl,window.CURIOCREW_CONFIG.supabaseAnonKey);
+let tasks=[],filter="all";
+const $=s=>document.querySelector(s);
+
+async function load(){
+  const {data,error}=await sb.from("tasks").select("*").order("created_at",{ascending:false});
+  if(error){$("#connection").textContent="Ошибка подключения";console.error(error);return}
+  tasks=data||[];$("#connection").textContent="Общий режим • синхронизация включена";render();
+}
+function render(){
+  const root=$("#tasks");root.innerHTML="";
+  tasks.filter(t=>filter==="all"||t.status===filter).forEach(t=>{
+    const a=document.createElement("article");a.className="card";
+    const [txt,cls]=C[t.status]||C.planned;
+    a.innerHTML=`<div class="top"><span class="pill ${cls}">${txt}</span><button class="edit">Изменить</button></div>
+      <h3></h3><p></p>${t.image_url?'<img alt="">':''}
+      <div class="quick"><button data-s="doing">В разработке</button><button data-s="done">✓ Сделано</button><button data-s="cancelled">Не делаем</button></div>`;
+    a.querySelector("h3").textContent=t.title;a.querySelector("p").textContent=t.description||"";
+    if(t.image_url)a.querySelector("img").src=t.image_url;
+    a.querySelector(".edit").onclick=()=>edit(t);
+    a.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>setStatus(t.id,b.dataset.s));
+    root.appendChild(a);
+  });
+}
+async function setStatus(id,status){
+  const {error}=await sb.from("tasks").update({status}).eq("id",id);if(error)alert(error.message);
+}
+function edit(t=null){
+  $("#formTitle").textContent=t?"Изменить задачу":"Новая задача";
+  $("#id").value=t?.id||"";$("#title").value=t?.title||"";$("#description").value=t?.description||"";
+  $("#status").value=t?.status||"planned";$("#image").value=t?.image_url||"";
+  $("#delete").classList.toggle("hidden",!t);$("#dialog").showModal();
+}
+$("#addTask").onclick=()=>edit();$("#cancel").onclick=()=>$("#dialog").close();
+$("#form").onsubmit=async e=>{
+  e.preventDefault();const id=$("#id").value;
+  const p={title:$("#title").value.trim(),description:$("#description").value.trim(),status:$("#status").value,image_url:$("#image").value.trim()};
+  const q=id?sb.from("tasks").update(p).eq("id",id):sb.from("tasks").insert(p);
+  const {error}=await q;if(error)return alert(error.message);$("#dialog").close();
+};
+$("#delete").onclick=async()=>{
+  const id=$("#id").value;if(!id||!confirm("Удалить задачу?"))return;
+  const {error}=await sb.from("tasks").delete().eq("id",id);if(error)return alert(error.message);$("#dialog").close();
+};
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render();
+});
+sb.channel("cc-live").on("postgres_changes",{event:"*",schema:"public",table:"tasks"},load).subscribe();
+load();
