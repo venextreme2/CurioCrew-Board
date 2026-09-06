@@ -93,10 +93,127 @@ async function setStatus(id,status){
   await load();
 }
 
+/* -------------------- image upload / drag & drop -------------------- */
+
+const imageDrop=$("#imageDrop");
+const imageFile=$("#imageFile");
+const imageInput=$("#image");
+const imagePreview=$("#imagePreview");
+const imageDropText=$("#imageDropText");
+const clearImage=$("#clearImage");
+
+function refreshImagePreview(){
+  const value=imageInput.value.trim();
+
+  if(!value){
+    imagePreview.classList.add("hidden");
+    imagePreview.removeAttribute("src");
+    imageDropText.classList.remove("hidden");
+    clearImage.classList.add("hidden");
+    return;
+  }
+
+  imagePreview.src=value;
+  imagePreview.classList.remove("hidden");
+  imageDropText.classList.add("hidden");
+  clearImage.classList.remove("hidden");
+}
+
+function fileToDataUrl(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=()=>reject(reader.error||new Error("Не удалось прочитать файл"));
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImage(src){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onload=()=>resolve(img);
+    img.onerror=()=>reject(new Error("Не удалось открыть изображение"));
+    img.src=src;
+  });
+}
+
+async function prepareImage(file){
+  if(!file||!file.type.startsWith("image/")){
+    alert("Выбери изображение");
+    return;
+  }
+
+  /* Не даём случайно засунуть в строку Supabase гигантский исходник. */
+  if(file.size>15*1024*1024){
+    alert("Картинка слишком большая. Максимум 15 МБ.");
+    return;
+  }
+
+  try{
+    const source=await fileToDataUrl(file);
+    const img=await loadImage(source);
+
+    const maxSide=1400;
+    const scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+    const width=Math.max(1,Math.round(img.naturalWidth*scale));
+    const height=Math.max(1,Math.round(img.naturalHeight*scale));
+
+    const canvas=document.createElement("canvas");
+    canvas.width=width;
+    canvas.height=height;
+
+    const ctx=canvas.getContext("2d");
+    ctx.drawImage(img,0,0,width,height);
+
+    /* WebP заметно уменьшает размер скринов, которые хранятся в image_url. */
+    imageInput.value=canvas.toDataURL("image/webp",0.82);
+    refreshImagePreview();
+  }catch(error){
+    console.error(error);
+    alert("Не удалось обработать картинку");
+  }
+}
+
+imageDrop.onclick=()=>imageFile.click();
+imageDrop.onkeydown=e=>{
+  if(e.key==="Enter"||e.key===" "){
+    e.preventDefault();
+    imageFile.click();
+  }
+};
+
+imageFile.onchange=()=>{
+  prepareImage(imageFile.files?.[0]);
+  imageFile.value="";
+};
+
+imageDrop.ondragover=e=>{
+  e.preventDefault();
+  imageDrop.classList.add("dragging");
+};
+
+imageDrop.ondragleave=()=>imageDrop.classList.remove("dragging");
+
+imageDrop.ondrop=e=>{
+  e.preventDefault();
+  imageDrop.classList.remove("dragging");
+  prepareImage(e.dataTransfer.files?.[0]);
+};
+
+imageInput.oninput=refreshImagePreview;
+
+clearImage.onclick=()=>{
+  imageInput.value="";
+  refreshImagePreview();
+};
+
+/* ------------------------------------------------------------------- */
+
 function edit(t=null){
   $("#formTitle").textContent=t?"Изменить задачу":"Новая задача";
   $("#id").value=t?.id||"";$("#title").value=t?.title||"";$("#description").value=t?.description||"";
   $("#status").value=t?.status||"planned";$("#image").value=t?.image_url||"";
+  refreshImagePreview();
   $("#delete").classList.toggle("hidden",!t);$("#dialog").showModal();
 }
 

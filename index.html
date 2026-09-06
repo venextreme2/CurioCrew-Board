@@ -39,5 +39,21 @@
 </section>
 </main>
 
-<dialog id="dialog"><form id="form"><h2 id="formTitle">Новая задача</h2><input id="id" type="hidden"><label>Название<input id="title" required></label><label>Описание<textarea id="description" rows="4"></textarea></label><label>Статус<select id="status"><option value="planned">Запланировано</option><option value="doing">В разработке</option><option value="done">Сделано</option><option value="cancelled">Не делаем</option></select></label><label>Ссылка на картинку<input id="image" placeholder="https://..."></label><div class="actions"><button type="button" id="delete" class="danger hidden">Удалить</button><span></span><button type="button" id="cancel">Отмена</button><button type="submit" class="primary">Сохранить</button></div></form></dialog>
+<dialog id="dialog"><form id="form"><h2 id="formTitle">Новая задача</h2><input id="id" type="hidden"><label>Название<input id="title" required></label><label>Описание<textarea id="description" rows="4"></textarea></label><label>Статус<select id="status"><option value="planned">Запланировано</option><option value="doing">В разработке</option><option value="done">Сделано</option><option value="cancelled">Не делаем</option></select></label>
+
+<div class="image-field">
+  <label>Картинка</label>
+  <div id="imageDrop" class="image-drop" tabindex="0" role="button" aria-label="Загрузить картинку">
+    <input id="imageFile" type="file" accept="image/*" hidden>
+    <div id="imageDropText">
+      <strong>Перетащи картинку сюда</strong>
+      <small>или нажми, чтобы выбрать файл</small>
+    </div>
+    <img id="imagePreview" class="hidden" alt="Предпросмотр картинки">
+  </div>
+  <label>Или ссылка на картинку<input id="image" placeholder="https://..."></label>
+  <button type="button" id="clearImage" class="image-clear hidden">Убрать картинку</button>
+</div>
+
+<div class="actions"><button type="button" id="delete" class="danger hidden">Удалить</button><span></span><button type="button" id="cancel">Отмена</button><button type="submit" class="primary">Сохранить</button></div></form></dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script></body></html>
