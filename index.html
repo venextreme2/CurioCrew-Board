@@ -1,17 +1,129 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CurioCrew — разработка</title><link rel="stylesheet" href="styles.css"></head><body>
-<header><a class="brand" href="index.html"><h1>CurioCrew</h1><p>Трекер разработки</p></a><div class="header-actions"><nav class="site-nav"><a class="active" href="index.html">Разработка</a><a href="devlog.html">Дневник</a><a href="artifacts.html">Артефакты</a><a href="royal-artifacts.html">Королевские артефакты</a><a href="islands.html">Острова</a><a href="mobs.html">Мобы</a></nav><button id="addTask">+ Добавить задачу</button></div></header>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CurioCrew — разработка</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html"><h1>CurioCrew</h1><p>Трекер разработки</p></a>
+  <div class="header-actions">
+    <nav class="site-nav">
+      <a class="active" href="index.html">Разработка</a>
+      <a href="artifacts.html">Артефакты</a>
+      <a href="royal-artifacts.html">Королевские артефакты</a>
+      <a href="islands.html">Острова</a>
+      <a href="mobs.html">Мобы</a>
+      <a href="devlog.html">Дневник</a>
+    </nav>
+    <button id="addTask">+ Добавить задачу</button>
+  </div>
+</header>
+
 <main>
-<section class="hero-card"><div class="hero-text"><span class="eyebrow">Актуально • 10 сентября 2026</span><h2>CurioCrew — кооперативная экспедиция за опасными артефактами</h2><p>1–4 игрока выходят из средневекового HUB на небольшие острова, проводят там примерно 15–25 минут, ищут ценные и аномальные предметы и пытаются довезти добычу обратно королю. Главная ставка проекта — физический кооператив, странные артефакты, мобы и явления, которые меняют правила конкретной вылазки.</p>
-<div class="hero-grid">
-<div class="mini-card"><h3>HUB</h3><p>Собраны портовая и городская части, главная площадь и рынок. Есть рельеф, вода, морское дно, дороги и декор. Королевская зона и замок сейчас проходят отдельную доработку.</p></div>
-<div class="mini-card"><h3>Игрок</h3><p>Есть first-person управление, бег, присед, прыжок, HeadBob, руки, полноценное тело с тенью, здоровье и стамина, падение, плавание, утопление, Downed/Death и физическое тело.</p></div>
-<div class="mini-card"><h3>Физика</h3><p>Работают захват и бросок предметов, взаимодействие с Rigidbody, опасная вода, moving platforms и прототип лодки. Это фундамент для будущих артефактов.</p></div>
-<div class="mini-card"><h3>Контент</h3><p>Проектируем острова, мобов и коллекцию артефактов. Для первых трёх островов уже формируется набор механик, рассчитанных на небольшие миссии и повторные прохождения.</p></div>
-</div>
-<div class="project-tags"><span>1–4 игрока</span><span>15–25 мин на остров</span><span>First-person</span><span>Low-poly</span><span>Физический кооператив</span><span>Артефакты</span><span>Unity 6</span></div></div>
-<div class="hero-image-wrap"><img src="assets/hub-hero.png" alt="HUB CurioCrew"><div class="hero-caption">HUB — безопасная база между экспедициями. Здесь игроки готовятся, возвращают добычу и двигаются к замку короля.</div></div></section>
-<section class="section-links"><a class="section-link" href="devlog.html"><strong>Дневник разработки</strong><span>Что менялось по дням с самого старта проекта.</span></a><a class="section-link" href="artifacts.html"><strong>Артефакты</strong><span>Находки, эффекты, переноска, опасность и технические заметки.</span></a><a class="section-link" href="royal-artifacts.html"><strong>Королевские артефакты</strong><span>Ключевые сюжетные предметы и прогрессия.</span></a><a class="section-link" href="islands.html"><strong>Острова</strong><span>Миссии, биомы, механики и структура экспедиций.</span></a><a class="section-link" href="mobs.html"><strong>Мобы</strong><span>Монстры, враги, боссы и их поведение.</span></a></section>
-<section class="task-board"><div class="statusline"><span id="connection">Подключение…</span></div><div class="task-toolbar"><nav class="filters"><button class="filter active" data-filter="all">Все</button><button class="filter" data-filter="planned">Запланировано</button><button class="filter" data-filter="doing">В разработке</button><button class="filter" data-filter="done">Сделано</button><button class="filter" data-filter="cancelled">Не делаем</button></nav><div class="task-controls"><label>Сортировка<select id="taskSort"><option value="newest">Сначала новые</option><option value="oldest">Сначала старые</option><option value="status">По статусу</option><option value="title-asc">Название А–Я</option><option value="title-desc">Название Я–А</option></select></label><label>На странице<select id="pageSize"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option><option value="50">50</option></select></label></div></div><div id="taskMeta" class="task-meta"></div><section id="tasks"></section><div id="pagination" class="pagination"></div></section>
+<section class="hero-card">
+  <div class="hero-text">
+    <span class="eyebrow">Актуально • 10 сентября 2026</span>
+    <h2>Кооперативная first-person экспедиция, где артефакты меняют правила миссии</h2>
+    <p>CurioCrew — игра на 1–4 игроков с компактными островами, физикой, странными артефактами, опасными явлениями и юмором, который рождается из действий самой команды. HUB строится как средневековый портовый город: игроки готовятся к вылазке, уходят на лодке на 15–25 минут, возвращают добычу и продвигаются у короля.</p>
+
+    <div class="hero-grid">
+      <div class="mini-card"><h3>HUB</h3><p>Порт, площадь и рынок уже собраны. Идёт плотная доработка города, прохода к королевской части, замка, двора и тронного зала.</p></div>
+      <div class="mini-card"><h3>Игрок</h3><p>Есть ходьба, бег, присед, прыжок, HeadBob, first-person руки, полноценное тело и тень, здоровье, стамина, Downed/Death и физический ragdoll.</p></div>
+      <div class="mini-card"><h3>Вода и физика</h3><p>Работают хват и бросок предметов, опасная вода, плавание на стамине, утопление, подводный визуальный эффект, лодка и движущиеся поверхности.</p></div>
+      <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Королевская зона HUB, первый тропический остров, прототипы необычных артефактов, новые эмоции игроков и подготовка кооперативной синхронизации.</p></div>
+    </div>
+
+    <div class="project-tags">
+      <span>1–4 игрока</span><span>First-person</span><span>Low-poly</span><span>15–25 минут</span><span>Физический кооператив</span><span>Странные артефакты</span><span>Средневековый HUB</span>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <img src="assets/hub-hero.png" alt="Концепт HUB CurioCrew">
+    <div class="hero-caption">HUB — постоянная база команды между экспедициями. Текущий игровой вариант уже ушёл значительно дальше раннего концепта на изображении.</div>
+  </div>
+</section>
+
+<section class="project-snapshot">
+  <div class="snapshot-card"><strong>1–4</strong><span>игрока в одной экспедиционной команде</span></div>
+  <div class="snapshot-card"><strong>15–25</strong><span>минут — целевая длительность одной островной миссии</span></div>
+  <div class="snapshot-card"><strong>5+</strong><span>новых системных артефактов уже описаны для первых островов</span></div>
+  <div class="snapshot-card"><strong>с 01.09</strong><span>проект развивается в Git: HUB, физика, вода, персонаж и контент</span></div>
+</section>
+
+<section class="section-links">
+  <a class="section-link" href="artifacts.html"><strong>Артефакты</strong><span>Обычные находки: эффекты, переноска, опасность, стоимость и отдельные промты для реализации.</span></a>
+  <a class="section-link" href="royal-artifacts.html"><strong>Королевские артефакты</strong><span>Ключевые сюжетные предметы и награды за прогрессию.</span></a>
+  <a class="section-link" href="islands.html"><strong>Острова</strong><span>Биомы, миссии, уникальные правила, враги и боссы.</span></a>
+  <a class="section-link" href="mobs.html"><strong>Мобы</strong><span>Монстры, морские угрозы, боссы и физическое поведение.</span></a>
+  <a class="section-link" href="devlog.html"><strong>Дневник разработки</strong><span>Что реально менялось по дням — без технического мусора из истории Git.</span></a>
+</section>
+
+<section class="task-board">
+  <div class="statusline"><span id="connection">Подключение…</span></div>
+  <div class="task-toolbar">
+    <nav class="filters">
+      <button class="filter active" data-filter="all">Все</button>
+      <button class="filter" data-filter="planned">Запланировано</button>
+      <button class="filter" data-filter="doing">В разработке</button>
+      <button class="filter" data-filter="done">Сделано</button>
+      <button class="filter" data-filter="cancelled">Не делаем</button>
+    </nav>
+    <div class="task-controls">
+      <label>Сортировка
+        <select id="taskSort">
+          <option value="newest">Сначала новые</option>
+          <option value="oldest">Сначала старые</option>
+          <option value="status">По статусу</option>
+          <option value="title-asc">Название А–Я</option>
+          <option value="title-desc">Название Я–А</option>
+        </select>
+      </label>
+      <label>На странице
+        <select id="pageSize">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div id="taskMeta" class="task-meta"></div>
+  <section id="tasks"></section>
+  <div id="pagination" class="pagination"></div>
+</section>
 </main>
-<dialog id="dialog"><form id="form"><h2 id="formTitle">Новая задача</h2><input id="id" type="hidden"><label>Название<input id="title" required></label><label>Описание<textarea id="description" rows="4"></textarea></label><label>Статус<select id="status"><option value="planned">Запланировано</option><option value="doing">В разработке</option><option value="done">Сделано</option><option value="cancelled">Не делаем</option></select></label><div class="image-field"><label>Картинка</label><div id="imageDrop" class="image-drop" tabindex="0" role="button" aria-label="Загрузить картинку"><input id="imageFile" type="file" accept="image/*" hidden><div id="imageDropText"><strong>Перетащи картинку сюда</strong><small>зона подсветится, когда файл можно отпускать</small><small>или нажми, чтобы выбрать файл</small></div><img id="imagePreview" class="hidden" alt="Предпросмотр картинки"></div><label>Или ссылка на картинку<input id="image" placeholder="https://..."></label><button type="button" id="clearImage" class="image-clear hidden">Убрать картинку</button></div><div class="actions"><button type="button" id="delete" class="danger hidden">Удалить</button><span></span><button type="button" id="cancel">Отмена</button><button type="submit" class="primary">Сохранить</button></div></form></dialog>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script></body></html>
+
+<dialog id="dialog">
+<form id="form">
+  <h2 id="formTitle">Новая задача</h2>
+  <input id="id" type="hidden">
+  <label>Название<input id="title" required></label>
+  <label>Описание<textarea id="description" rows="4"></textarea></label>
+  <label>Статус<select id="status"><option value="planned">Запланировано</option><option value="doing">В разработке</option><option value="done">Сделано</option><option value="cancelled">Не делаем</option></select></label>
+
+  <div class="image-field">
+    <label>Картинка</label>
+    <div id="imageDrop" class="image-drop" tabindex="0" role="button" aria-label="Загрузить картинку">
+      <input id="imageFile" type="file" accept="image/*" hidden>
+      <div id="imageDropText">
+        <strong>Перетащи картинку в эту область</strong>
+        <small>Рамка подсветится перед успешным добавлением • или нажми, чтобы выбрать файл</small>
+      </div>
+      <img id="imagePreview" class="hidden" alt="Предпросмотр картинки">
+    </div>
+    <label>Или ссылка на картинку<input id="image" placeholder="https://..."></label>
+    <button type="button" id="clearImage" class="image-clear hidden">Убрать картинку</button>
+  </div>
+
+  <div class="actions"><button type="button" id="delete" class="danger hidden">Удалить</button><span></span><button type="button" id="cancel">Отмена</button><button type="submit" class="primary">Сохранить</button></div>
+</form>
+</dialog>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
