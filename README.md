@@ -1,6 +1,6 @@
-# CurioCrew Board
+# Holy Ship! Board
 
-Внутренний сайт проекта CurioCrew.
+Внутренний сайт проекта Holy Ship!.
 
 Разделы:
 - Разработка — общий трекер задач
