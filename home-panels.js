@@ -11,6 +11,10 @@
   const saveButton=document.querySelector('#saveReleaseDates');
   const cancelButton=document.querySelector('#cancelReleaseDates');
   const state=document.querySelector('#releaseSyncState');
+  const taskTotal=document.querySelector('#taskTotal');
+  const taskDone=document.querySelector('#taskDone');
+  const taskDoing=document.querySelector('#taskDoing');
+  const artifactCount=document.querySelector('#artifactCount');
   if(!alphaOut||!betaOut||!releaseOut||!editor)return;
 
   let values={alpha:'?',beta:'?',release:'?'};
@@ -32,6 +36,24 @@
     releaseInput.value=values.release==='?'?'':values.release;
   }
   function closeEditor(){editor.classList.add('hidden');editButton.classList.remove('hidden');}
+
+
+  async function loadProjectStats(){
+    if(!taskTotal&&!taskDone&&!taskDoing&&!artifactCount)return;
+    const [{data:taskRows,error:taskError},{count:artifacts,error:artifactError}]=await Promise.all([
+      homeSb.from('tasks').select('status'),
+      homeSb.from('game_content').select('id',{count:'exact',head:true}).eq('kind','artifact')
+    ]);
+    if(!taskError&&Array.isArray(taskRows)){
+      const done=taskRows.filter(row=>row.status==='done').length;
+      const doing=taskRows.filter(row=>row.status==='doing').length;
+      if(taskTotal)taskTotal.textContent=String(taskRows.length);
+      if(taskDone)taskDone.textContent=String(done);
+      if(taskDoing)taskDoing.textContent=String(doing);
+    }else if(taskError)console.error(taskError);
+    if(!artifactError&&artifactCount&&Number.isFinite(artifacts))artifactCount.textContent=String(artifacts);
+    else if(artifactError)console.error(artifactError);
+  }
 
   async function loadDates(){
     setState('Загрузка дат…');
@@ -70,5 +92,11 @@
     })
     .subscribe();
 
+  homeSb.channel('cc-home-stats')
+    .on('postgres_changes',{event:'*',schema:'public',table:'tasks'},()=>loadProjectStats())
+    .on('postgres_changes',{event:'*',schema:'public',table:'game_content'},()=>loadProjectStats())
+    .subscribe();
+
+  loadProjectStats();
   loadDates();
 })();

@@ -6,7 +6,7 @@
 <title>Holy Ship! — разработка</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="home-panels.css">
-<link rel="stylesheet" href="project-assessment.css?v=20260913">
+<link rel="stylesheet" href="project-assessment.css?v=20260919">
 </head>
 <body class="home-page">
 <header>
@@ -64,7 +64,7 @@
 
       <div class="team-status">
         <span class="live-dot" aria-hidden="true"></span>
-        <div><strong>Проект активен</strong><span>Сейчас: HUB, замок, острова, артефакты и кооперативные механики.</span></div>
+        <div><strong>Проект активен</strong><span>Сейчас: доска заданий HUB, физика смерти и трупов, инвентарь, морские существа и подготовка первых экспедиций.</span></div>
       </div>
     </section>
   </aside>
@@ -73,52 +73,52 @@
     <section class="assessment-hud" id="team-contribution" aria-labelledby="contributionTitle">
       <div class="assessment-heading">
         <div><span class="assessment-kicker">Команда • вклад в разработку</span><h2 id="contributionTitle">Кто сколько сделал</h2></div>
-        <div class="assessment-stamp">Оценка по GitHub<time datetime="2026-09-13">13.09.2026</time></div>
+        <div class="assessment-stamp">Оценка по GitHub<time datetime="2026-09-19">19.09.2026</time></div>
       </div>
       <p class="assessment-intro">Доли в уже созданном игровом прототипе. Основа оценки — реализованные направления и авторство изменений, а не количество строк или коммитов.</p>
       <div class="contribution-cards">
         <article class="contribution-card konstantin-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Константин</h3><a href="https://github.com/venextreme2" target="_blank" rel="noopener noreferrer">venextreme2</a></div>
-            <div class="contribution-value" aria-label="Примерно 60 процентов"><small>≈</small>60<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 64 процента"><small>≈</small>64<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Основа проекта, сборка HUB и свет, анимации, эмоции, HUD и звуковое окружение.</p>
+          <p>Основа проекта и HUB, свет и атмосфера, анимации/эмоции, HUD и аудио, сетевой ragdoll, feedback урона и система низкого здоровья.</p>
         </article>
         <article class="contribution-card azat-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Азат</h3><a href="https://github.com/AzatBagautdinov" target="_blank" rel="noopener noreferrer">AzatBagautdinov</a></div>
-            <div class="contribution-value" aria-label="Примерно 40 процентов"><small>≈</small>40<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 36 процентов"><small>≈</small>36<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Лодка и груз, вода и плавание, физическое тело игрока, королевская зона и коллизии.</p>
+          <p>Лодка и физический груз, вода и плавание, базовое физическое тело игрока, королевская зона, коллизии окружения и отдельные HUB-локации.</p>
         </article>
       </div>
       <div class="contribution-split" aria-hidden="true"><span class="konstantin-share"></span><span class="azat-share"></span></div>
       <p class="assessment-caveat">Приблизительная аналитическая оценка, не учёт часов и не доли владения. 100% здесь — всё уже сделанное, а не готовность игры к релизу.</p>
       <details class="assessment-method">
         <summary>Как оценён вклад и что учтено</summary>
-        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/c58e242d9cd44e50cf47c382bedcf4344904648d" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> за 1–13 сентября 2026, до коммита <code>c58e242</code>. Автор <code>BoryaZhivotnoe</code> учтён как Азат. Оценка относится к игре: правки этого сайта в расчёт не включены.</p>
+        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/491e52ee2e2d38b5da8541ce795102b35e03dd04" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> за 1–19 сентября 2026, до коммита <code>491e52e</code>. Автор <code>BoryaZhivotnoe</code> учтён как Азат. Оценка относится к игре: правки этого сайта в расчёт не включены.</p>
         <p>Ниже — условные баллы из 100. Веса направлений и распределение внутри них выбраны при анализе, а не измерены GitHub. Поэтому итог показан со знаком «≈».</p>
         <div class="assessment-table-wrap">
           <table class="assessment-table">
             <caption>Расчёт: К. — Константин, А. — Азат. Баллы не обозначают часы работы.</caption>
             <thead><tr><th scope="col">Направление</th><th scope="col">Вес</th><th scope="col">К.</th><th scope="col">А.</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Основа прототипа и доставка</th><td>10</td><td>10</td><td>0</td></tr>
-              <tr><th scope="row">HUB, остров, замок и освещение</th><td>25</td><td>17</td><td>8</td></tr>
-              <tr><th scope="row">Игрок, руки, тело и анимации движения</th><td>20</td><td>11</td><td>9</td></tr>
-              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>15</td><td>5</td><td>10</td></tr>
-              <tr><th scope="row">Лодка, посадка и физический груз</th><td>10</td><td>0</td><td>10</td></tr>
-              <tr><th scope="row">Аудио, HUD и эмоции</th><td>15</td><td>15</td><td>0</td></tr>
-              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>5</td><td>2</td><td>3</td></tr>
+              <tr><th scope="row">Основа прототипа и доставка</th><td>8</td><td>8</td><td>0</td></tr>
+              <tr><th scope="row">HUB, острова, замок, локации и свет</th><td>21</td><td>15</td><td>6</td></tr>
+              <tr><th scope="row">Игрок, тело, анимации, смерть и ragdoll</th><td>20</td><td>12</td><td>8</td></tr>
+              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>14</td><td>5</td><td>9</td></tr>
+              <tr><th scope="row">Лодка, посадка и физический груз</th><td>10</td><td>1</td><td>9</td></tr>
+              <tr><th scope="row">Аудио, HUD, эмоции и feedback урона</th><td>19</td><td>18</td><td>1</td></tr>
+              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>8</td><td>5</td><td>3</td></tr>
             </tbody>
-            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>60</td><td>40</td></tr></tfoot>
+            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>64</td><td>36</td></tr></tfoot>
           </table>
         </div>
         <div class="assessment-evidence">
-          <p><strong>Примеры вклада Константина:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/672cebc5d28146c3de73ca57fc24ae0c9698bfe7" target="_blank" rel="noopener noreferrer">доставка артефактов</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/9d857a5186cec283cc8191529ae76d3acc9ea79f" target="_blank" rel="noopener noreferrer">сборка HUB</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b2d493122cbd69dd42f73d2ad4cbd9ad27508ed9" target="_blank" rel="noopener noreferrer">свет и туман</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/007a68b1c449510d35ba15d23cfa63f3f9e44f6f" target="_blank" rel="noopener noreferrer">HUD подбора</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/feb2ed26a007b89aef7c9725f3ba0a181f4f27e3" target="_blank" rel="noopener noreferrer">аудиосистема</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/22547a8d0ddc329f78964844d3ca8572e9c4771c" target="_blank" rel="noopener noreferrer">зона острова</a>.</p>
-          <p><strong>Примеры вклада Азата:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/5e870aecf661e4c1f12cb3a8f9acf0238e9a3d4b" target="_blank" rel="noopener noreferrer">механика плавания</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/a07aa0bc72893ab0c742d03d9674245a0d147084" target="_blank" rel="noopener noreferrer">тело и ragdoll</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/dc43535c167300f0419b71db5fd477a32755e559" target="_blank" rel="noopener noreferrer">королевская зона</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b228cba8aa5a99c4d815d63c622478260e7f642a" target="_blank" rel="noopener noreferrer">морские волны</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/5037fdc4231ae58b4a5cac8421519e1276eebc14" target="_blank" rel="noopener noreferrer">экспедиционная лодка</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/ec7ffcfca89c792f473c0821d813aefc0ca02b83" target="_blank" rel="noopener noreferrer">коллизии окружения</a>.</p>
+          <p><strong>Примеры вклада Константина:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/9d857a5186cec283cc8191529ae76d3acc9ea79f" target="_blank" rel="noopener noreferrer">сборка HUB</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b2d493122cbd69dd42f73d2ad4cbd9ad27508ed9" target="_blank" rel="noopener noreferrer">свет и туман</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/feb2ed26a007b89aef7c9725f3ba0a181f4f27e3" target="_blank" rel="noopener noreferrer">аудиосистема</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/463074a1c806e940bb6a215203ba424d83d31b63" target="_blank" rel="noopener noreferrer">сетевой recoverable ragdoll</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/79cb7b4da74b2a150bab86f8b2b8f381b72b244d" target="_blank" rel="noopener noreferrer">hit/damage feedback</a> и <a href="https://github.com/venextreme2/Curio-Crew/commit/4846527590c92a47287840c139ba9a7ef279ff32" target="_blank" rel="noopener noreferrer">low-health feedback и баланс vitals</a>.</p>
+          <p><strong>Примеры вклада Азата:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/5e870aecf661e4c1f12cb3a8f9acf0238e9a3d4b" target="_blank" rel="noopener noreferrer">механика плавания</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/a07aa0bc72893ab0c742d03d9674245a0d147084" target="_blank" rel="noopener noreferrer">физическое тело игрока</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/dc43535c167300f0419b71db5fd477a32755e559" target="_blank" rel="noopener noreferrer">королевская зона</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b228cba8aa5a99c4d815d63c622478260e7f642a" target="_blank" rel="noopener noreferrer">морские волны</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/5037fdc4231ae58b4a5cac8421519e1276eebc14" target="_blank" rel="noopener noreferrer">экспедиционная лодка</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/ec7ffcfca89c792f473c0821d813aefc0ca02b83" target="_blank" rel="noopener noreferrer">коллизии окружения</a> и <a href="https://github.com/venextreme2/Curio-Crew/commit/77765d0f" target="_blank" rel="noopener noreferrer">локация на холме в HUB</a>.</p>
         </div>
         <p class="assessment-limit">Merge-коммиты, повторы одной реализации, отменённые эксперименты и объём импортированных ассетов не дают дополнительных баллов. Реальные исправления интеграции учтены отдельно. Git не показывает все обсуждения, тестирование, совместную работу и незапушенные изменения. Автор коммита — ориентир, а не доказательство единоличного выполнения. Веса можно пересмотреть после совместной проверки.</p>
         <p>Это сохранённый срез на указанную дату, а не автоматический счётчик активности. Новые изменения требуют повторной оценки.</p>
@@ -127,15 +127,15 @@
 
     <section class="hero-card">
       <div class="hero-text">
-        <span class="eyebrow">Актуально • 10 сентября 2026</span>
+        <span class="eyebrow">Актуально • 19 сентября 2026</span>
         <h2>Кооперативная first-person экспедиция, где артефакты меняют правила миссии</h2>
         <p>Holy Ship! — игра на 1–4 игроков с компактными островами, физикой, странными артефактами, опасными явлениями и юмором, который рождается из действий самой команды. HUB строится как средневековый портовый город: игроки готовятся к вылазке, уходят на лодке на 15–25 минут, возвращают добычу и продвигаются у короля.</p>
 
         <div class="hero-grid">
-          <div class="mini-card"><h3>HUB</h3><p>Порт, площадь и рынок уже собраны. Идёт плотная доработка города, прохода к королевской части, замка, двора и тронного зала.</p></div>
-          <div class="mini-card"><h3>Игрок</h3><p>Есть ходьба, бег, присед, прыжок, HeadBob, first-person руки, полноценное тело и тень, здоровье, стамина, Downed/Death и физический ragdoll.</p></div>
-          <div class="mini-card"><h3>Вода и физика</h3><p>Работают хват и бросок предметов, опасная вода, плавание на стамине, утопление, подводный визуальный эффект, лодка и движущиеся поверхности.</p></div>
-          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Королевская зона HUB, первый тропический остров, прототипы необычных артефактов, новые эмоции игроков и подготовка кооперативной синхронизации.</p></div>
+          <div class="mini-card"><h3>HUB</h3><p>Порт, площадь, рынок, королевская зона и отдельная локация на холме уже собраны. Сейчас дорабатывается доска заданий у пирса: внешний вид, объявления и доступ к экспедициям.</p></div>
+          <div class="mini-card"><h3>Игрок</h3><p>Есть first-person движение и руки, полноценное тело и тень, здоровье/стамина, Downed/Death, сетевой recoverable ragdoll и таскание тела. Добавлены hitmarker, числа урона, кровь, затемнение и сердцебиение при критическом HP.</p></div>
+          <div class="mini-card"><h3>Вода и физика</h3><p>Работают хват/бросок предметов, опасная вода, плавание на стамине, утопление, подводный режим, прибрежное ослабление волн, лодка, движущиеся поверхности и физика тела после смерти.</p></div>
+          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Доска заданий и допуск к миссиям, полировка таскания трупов, инвентарь, живые морские существа, разгрузочная зона у пирса и проектирование первых островных экспедиций.</p></div>
         </div>
 
         <div class="project-tags">
@@ -148,11 +148,13 @@
       </div>
     </section>
 
-    <section class="project-snapshot">
+    <section class="project-snapshot" aria-label="Актуальный срез проекта">
+      <div class="snapshot-card"><strong id="taskTotal">80</strong><span>задач сейчас хранится в общем трекере проекта</span></div>
+      <div class="snapshot-card"><strong id="taskDone">31</strong><span>задача отмечена как полностью сделанная</span></div>
+      <div class="snapshot-card"><strong id="taskDoing">17</strong><span>задач сейчас отмечены как «в разработке»</span></div>
+      <div class="snapshot-card"><strong id="artifactCount">6</strong><span>обычных системных артефактов описано в каталоге</span></div>
       <div class="snapshot-card"><strong>1–4</strong><span>игрока в одной экспедиционной команде</span></div>
       <div class="snapshot-card"><strong>15–25</strong><span>минут — целевая длительность одной островной миссии</span></div>
-      <div class="snapshot-card"><strong>5+</strong><span>новых системных артефактов уже описаны для первых островов</span></div>
-      <div class="snapshot-card"><strong>с 01.09</strong><span>проект развивается в Git: HUB, физика, вода, персонаж и контент</span></div>
     </section>
 
     <section class="section-links">
@@ -195,14 +197,14 @@
 
       <div class="price-card">
         <div class="price-icon" aria-hidden="true">₽</div>
-        <div><span>Ориентир цены за копию</span><strong>≈ 299 ₽</strong><small>для первой продаваемой версии<br>оценка на 13.09.2026</small></div>
+        <div><span>Ориентир цены за копию</span><strong>≈ 299 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 19.09.2026</small></div>
       </div>
       <details class="price-assessment">
         <summary>Почему 299 ₽</summary>
         <p><strong>Предварительный ориентир: 249–399 ₽.</strong> 299 ₽ — аналитическое предложение для бюджетной кооперативной игры, не установленная цена магазина и не стоимость разработки проекта.</p>
-        <p>В репозитории уже есть HUB, физические взаимодействия, тело игрока, плавание, аудио и офлайн-лодка. Это основа для продукта, но не подтверждение готовности к продаже: кооператив, полный цикл экспедиции, объём контента и стабильность ещё нужно проверить.</p>
+        <p>В репозитории уже есть HUB, физические взаимодействия, тело игрока, плавание, аудио, лодка, recoverable ragdoll, hit/damage feedback и критические эффекты здоровья. Это заметно более зрелый прототип, но не подтверждение готовности к продаже: полный сетевой цикл экспедиции, объём островного контента, прогрессия и стабильность ещё требуют проверки.</p>
         <p>Цену стоит подтвердить после внешнего плейтеста продаваемой сборки. Планы на острова и артефакты не считаются уже готовым контентом.</p>
-        <p>Рыночные ориентиры для сравнения, а не формула цены: <a href="https://steamdb.info/app/1966720/" target="_blank" rel="noopener noreferrer">Lethal Company — региональные цены</a> и <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer">R.E.P.O. — формат и состав игры</a>. Обоснование текущих систем: <a href="devlog.html#day-2026-09-13">дневник разработки</a>.</p>
+        <p>Рыночные ориентиры для сравнения, а не формула цены: <a href="https://steamdb.info/app/1966720/" target="_blank" rel="noopener noreferrer">Lethal Company — региональные цены</a> и <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer">R.E.P.O. — формат и состав игры</a>. Обоснование текущих систем: <a href="devlog.html#day-2026-09-19">дневник разработки</a>.</p>
       </details>
 
       <div class="release-timeline" aria-live="polite">
