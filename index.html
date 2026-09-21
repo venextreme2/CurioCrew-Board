@@ -6,7 +6,7 @@
 <title>Holy Ship! — разработка</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="home-panels.css">
-<link rel="stylesheet" href="project-assessment.css?v=20260919">
+<link rel="stylesheet" href="project-assessment.css?v=20260921">
 </head>
 <body class="home-page">
 <header>
@@ -64,7 +64,7 @@
 
       <div class="team-status">
         <span class="live-dot" aria-hidden="true"></span>
-        <div><strong>Проект активен</strong><span>Сейчас: доска заданий HUB, физика смерти и трупов, инвентарь, морские существа и подготовка первых экспедиций.</span></div>
+        <div><strong>Проект активен</strong><span>Сейчас: инвентарь и быстрые слоты, self-revive, морская экосистема, стыковка лодок, полировка воды и подготовка первых экспедиций.</span></div>
       </div>
     </section>
   </aside>
@@ -73,47 +73,49 @@
     <section class="assessment-hud" id="team-contribution" aria-labelledby="contributionTitle">
       <div class="assessment-heading">
         <div><span class="assessment-kicker">Команда • вклад в разработку</span><h2 id="contributionTitle">Кто сколько сделал</h2></div>
-        <div class="assessment-stamp">Оценка по GitHub<time datetime="2026-09-19">19.09.2026</time></div>
+        <div class="assessment-stamp">GitHub + текущая ветка<time datetime="2026-09-21">21.09.2026</time></div>
       </div>
       <p class="assessment-intro">Доли в уже созданном игровом прототипе. Основа оценки — реализованные направления и авторство изменений, а не количество строк или коммитов.</p>
       <div class="contribution-cards">
         <article class="contribution-card konstantin-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Константин</h3><a href="https://github.com/venextreme2" target="_blank" rel="noopener noreferrer">venextreme2</a></div>
-            <div class="contribution-value" aria-label="Примерно 64 процента"><small>≈</small>64<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 70 процентов"><small>≈</small>70<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Основа проекта и HUB, свет и атмосфера, анимации/эмоции, HUD и аудио, сетевой ragdoll, feedback урона и система низкого здоровья.</p>
+          <p>Основа проекта и HUB, HUD/аудио и feedback урона, сетевой ragdoll, а также текущая ветка: инвентарь, self-revive, морские существа, docking и последние лодочные исправления.</p>
         </article>
         <article class="contribution-card azat-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Азат</h3><a href="https://github.com/AzatBagautdinov" target="_blank" rel="noopener noreferrer">AzatBagautdinov</a></div>
-            <div class="contribution-value" aria-label="Примерно 36 процентов"><small>≈</small>36<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 30 процентов"><small>≈</small>30<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Лодка и физический груз, вода и плавание, базовое физическое тело игрока, королевская зона, коллизии окружения и отдельные HUB-локации.</p>
+          <p>Базовая лодка и физический груз, вода и плавание, физическое тело игрока, королевская зона, коллизии окружения и отдельные HUB-локации.</p>
         </article>
       </div>
       <div class="contribution-split" aria-hidden="true"><span class="konstantin-share"></span><span class="azat-share"></span></div>
       <p class="assessment-caveat">Приблизительная аналитическая оценка, не учёт часов и не доли владения. 100% здесь — всё уже сделанное, а не готовность игры к релизу.</p>
       <details class="assessment-method">
         <summary>Как оценён вклад и что учтено</summary>
-        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/491e52ee2e2d38b5da8541ce795102b35e03dd04" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> за 1–19 сентября 2026, до коммита <code>491e52e</code>. Автор <code>BoryaZhivotnoe</code> учтён как Азат. Оценка относится к игре: правки этого сайта в расчёт не включены.</p>
+        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/00b5b9dc8b98ae2358c89a056e502c0be6af5976" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> за 1–20 сентября 2026 до <code>00b5b9d</code> плюс фактически реализованная текущая рабочая ветка 20–21 сентября: инвентарь, self-revive, морские существа, docking, water/gameplay polish и связанные фиксы. Автор <code>BoryaZhivotnoe</code> учтён как Азат. Правки этого сайта в расчёт не включены.</p>
         <p>Ниже — условные баллы из 100. Веса направлений и распределение внутри них выбраны при анализе, а не измерены GitHub. Поэтому итог показан со знаком «≈».</p>
         <div class="assessment-table-wrap">
           <table class="assessment-table">
             <caption>Расчёт: К. — Константин, А. — Азат. Баллы не обозначают часы работы.</caption>
             <thead><tr><th scope="col">Направление</th><th scope="col">Вес</th><th scope="col">К.</th><th scope="col">А.</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Основа прототипа и доставка</th><td>8</td><td>8</td><td>0</td></tr>
-              <tr><th scope="row">HUB, острова, замок, локации и свет</th><td>21</td><td>15</td><td>6</td></tr>
-              <tr><th scope="row">Игрок, тело, анимации, смерть и ragdoll</th><td>20</td><td>12</td><td>8</td></tr>
-              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>14</td><td>5</td><td>9</td></tr>
-              <tr><th scope="row">Лодка, посадка и физический груз</th><td>10</td><td>1</td><td>9</td></tr>
-              <tr><th scope="row">Аудио, HUD, эмоции и feedback урона</th><td>19</td><td>18</td><td>1</td></tr>
-              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>8</td><td>5</td><td>3</td></tr>
+              <tr><th scope="row">Основа прототипа и доставка</th><td>7</td><td>7</td><td>0</td></tr>
+              <tr><th scope="row">HUB, острова, замок, локации и свет</th><td>16</td><td>11</td><td>5</td></tr>
+              <tr><th scope="row">Игрок, тело, анимации, смерть и revive</th><td>17</td><td>10</td><td>7</td></tr>
+              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>13</td><td>6</td><td>7</td></tr>
+              <tr><th scope="row">Лодки, upgrade, docking и физический груз</th><td>14</td><td>7</td><td>7</td></tr>
+              <tr><th scope="row">Инвентарь, quick slots и self-revive</th><td>10</td><td>10</td><td>0</td></tr>
+              <tr><th scope="row">Морские существа и Shark AI</th><td>8</td><td>8</td><td>0</td></tr>
+              <tr><th scope="row">Аудио, HUD и feedback урона</th><td>8</td><td>7</td><td>1</td></tr>
+              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>7</td><td>4</td><td>3</td></tr>
             </tbody>
-            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>64</td><td>36</td></tr></tfoot>
+            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>70</td><td>30</td></tr></tfoot>
           </table>
         </div>
         <div class="assessment-evidence">
@@ -127,15 +129,15 @@
 
     <section class="hero-card">
       <div class="hero-text">
-        <span class="eyebrow">Актуально • 19 сентября 2026</span>
+        <span class="eyebrow">Актуально • 21 сентября 2026</span>
         <h2>Кооперативная first-person экспедиция, где артефакты меняют правила миссии</h2>
         <p>Holy Ship! — игра на 1–4 игроков с компактными островами, физикой, странными артефактами, опасными явлениями и юмором, который рождается из действий самой команды. HUB строится как средневековый портовый город: игроки готовятся к вылазке, уходят на лодке на 15–25 минут, возвращают добычу и продвигаются у короля.</p>
 
         <div class="hero-grid">
-          <div class="mini-card"><h3>HUB</h3><p>Порт, площадь, рынок, королевская зона и отдельная локация на холме уже собраны. Сейчас дорабатывается доска заданий у пирса: внешний вид, объявления и доступ к экспедициям.</p></div>
-          <div class="mini-card"><h3>Игрок</h3><p>Есть first-person движение и руки, полноценное тело и тень, здоровье/стамина, Downed/Death, сетевой recoverable ragdoll и таскание тела. Добавлены hitmarker, числа урона, кровь, затемнение и сердцебиение при критическом HP.</p></div>
-          <div class="mini-card"><h3>Вода и физика</h3><p>Работают хват/бросок предметов, опасная вода, плавание на стамине, утопление, подводный режим, прибрежное ослабление волн, лодка, движущиеся поверхности и физика тела после смерти.</p></div>
-          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Доска заданий и допуск к миссиям, полировка таскания трупов, инвентарь, живые морские существа, разгрузочная зона у пирса и проектирование первых островных экспедиций.</p></div>
+          <div class="mini-card"><h3>HUB</h3><p>Порт, площадь, рынок, королевская зона и отдельная локация на холме уже собраны. У пирса появились доска улучшений лодки и рабочая зона стыковки; сама миссионная доска остаётся точкой доступа к экспедициям.</p></div>
+          <div class="mini-card"><h3>Игрок</h3><p>Есть first-person движение и руки, полноценное тело и тень, здоровье/стамина, Downed/Death и recoverable ragdoll. В текущей ветке добавлены рюкзак 6×5, quick slots 1–9, постоянные/аксессуарные слоты, self-revive расходник и контекстные действия предметов.</p></div>
+          <div class="mini-card"><h3>Вода и физика</h3><p>Вода учитывает динамическую поверхность волн, работают плавание, утопление, подводный режим и damage feedback. В HUB появились обычные рыбы и тестовые хищники, а лодочная система получила upgrade, docking и дополнительные физические фиксы.</p></div>
+          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Стабилизация docking/управления лодкой, финальный UX инвентаря и использования предметов, Shark AI и морская экосистема, water polish и общий визуальный pass HubTown.</p></div>
         </div>
 
         <div class="project-tags">
@@ -197,12 +199,12 @@
 
       <div class="price-card">
         <div class="price-icon" aria-hidden="true">₽</div>
-        <div><span>Ориентир цены за копию</span><strong>≈ 299 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 19.09.2026</small></div>
+        <div><span>Ориентир цены за копию</span><strong>≈ 299 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 21.09.2026</small></div>
       </div>
       <details class="price-assessment">
         <summary>Почему 299 ₽</summary>
         <p><strong>Предварительный ориентир: 249–399 ₽.</strong> 299 ₽ — аналитическое предложение для бюджетной кооперативной игры, не установленная цена магазина и не стоимость разработки проекта.</p>
-        <p>В репозитории уже есть HUB, физические взаимодействия, тело игрока, плавание, аудио, лодка, recoverable ragdoll, hit/damage feedback и критические эффекты здоровья. Это заметно более зрелый прототип, но не подтверждение готовности к продаже: полный сетевой цикл экспедиции, объём островного контента, прогрессия и стабильность ещё требуют проверки.</p>
+        <p>В проекте уже есть HUB, физические взаимодействия, тело игрока, плавание, аудио, лодка с upgrade/docking, recoverable ragdoll, hit/damage feedback, прототип инвентаря, self-revive и морские существа. Это заметно более зрелый прототип, но не подтверждение готовности к продаже: полный сетевой цикл экспедиции, объём островного контента, прогрессия и стабильность ещё требуют проверки.</p>
         <p>Цену стоит подтвердить после внешнего плейтеста продаваемой сборки. Планы на острова и артефакты не считаются уже готовым контентом.</p>
         <p>Рыночные ориентиры для сравнения, а не формула цены: <a href="https://steamdb.info/app/1966720/" target="_blank" rel="noopener noreferrer">Lethal Company — региональные цены</a> и <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer">R.E.P.O. — формат и состав игры</a>. Обоснование текущих систем: <a href="devlog.html#day-2026-09-19">дневник разработки</a>.</p>
       </details>
