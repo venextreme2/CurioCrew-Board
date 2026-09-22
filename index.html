@@ -6,7 +6,7 @@
 <title>Holy Ship! — разработка</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="home-panels.css">
-<link rel="stylesheet" href="project-assessment.css?v=20260921">
+<link rel="stylesheet" href="project-assessment.css?v=20260922">
 </head>
 <body class="home-page">
 <header>
@@ -64,7 +64,7 @@
 
       <div class="team-status">
         <span class="live-dot" aria-hidden="true"></span>
-        <div><strong>Проект активен</strong><span>Сейчас: инвентарь и быстрые слоты, self-revive, морская экосистема, стыковка лодок, полировка воды и подготовка первых экспедиций.</span></div>
+        <div><strong>Проект активен</strong><span>Сейчас: HubTown V2, королевский замок, две экспедиционные карты, плотные джунгли Green Maw и постоянная погода с ливнем или песчаной бурей.</span></div>
       </div>
     </section>
   </aside>
@@ -73,54 +73,55 @@
     <section class="assessment-hud" id="team-contribution" aria-labelledby="contributionTitle">
       <div class="assessment-heading">
         <div><span class="assessment-kicker">Команда • вклад в разработку</span><h2 id="contributionTitle">Кто сколько сделал</h2></div>
-        <div class="assessment-stamp">GitHub + текущая ветка<time datetime="2026-09-21">21.09.2026</time></div>
+        <div class="assessment-stamp">GitHub + текущая ветка<time datetime="2026-09-22">22.09.2026</time></div>
       </div>
       <p class="assessment-intro">Доли в уже созданном игровом прототипе. Основа оценки — реализованные направления и авторство изменений, а не количество строк или коммитов.</p>
       <div class="contribution-cards">
         <article class="contribution-card konstantin-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Константин</h3><a href="https://github.com/venextreme2" target="_blank" rel="noopener noreferrer">venextreme2</a></div>
-            <div class="contribution-value" aria-label="Примерно 70 процентов"><small>≈</small>70<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 60 процентов"><small>≈</small>60<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Основа проекта и HUB, HUD/аудио и feedback урона, сетевой ragdoll, а также текущая ветка: инвентарь, self-revive, морские существа, docking и последние лодочные исправления.</p>
+          <p>Основа проекта и первоначальный HUB, HUD/аудио и feedback урона, сетевой ragdoll, инвентарь, self-revive, морская экосистема, docking и последние лодочные исправления.</p>
         </article>
         <article class="contribution-card azat-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Азат</h3><a href="https://github.com/AzatBagautdinov" target="_blank" rel="noopener noreferrer">AzatBagautdinov</a></div>
-            <div class="contribution-value" aria-label="Примерно 30 процентов"><small>≈</small>30<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 40 процентов"><small>≈</small>40<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Базовая лодка и физический груз, вода и плавание, физическое тело игрока, королевская зона, коллизии окружения и отдельные HUB-локации.</p>
+          <p>Лодка и физический груз, вода и плавание, тело игрока, королевская зона, HubTown V2, Green Maw, Buried Harbor, Blender-наборы окружения и погодная атмосфера.</p>
         </article>
       </div>
       <div class="contribution-split" aria-hidden="true"><span class="konstantin-share"></span><span class="azat-share"></span></div>
       <p class="assessment-caveat">Приблизительная аналитическая оценка, не учёт часов и не доли владения. 100% здесь — всё уже сделанное, а не готовность игры к релизу.</p>
       <details class="assessment-method">
         <summary>Как оценён вклад и что учтено</summary>
-        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/00b5b9dc8b98ae2358c89a056e502c0be6af5976" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> за 1–20 сентября 2026 до <code>00b5b9d</code> плюс фактически реализованная текущая рабочая ветка 20–21 сентября: инвентарь, self-revive, морские существа, docking, water/gameplay polish и связанные фиксы. Автор <code>BoryaZhivotnoe</code> учтён как Азат. Правки этого сайта в расчёт не включены.</p>
+        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/feature/environment-p5-atmosphere" target="_blank" rel="noopener noreferrer">Curio-Crew</a> за 1–22 сентября 2026, включая рабочие ветки с инвентарём, self-revive, морской экосистемой, docking, HubTown V2, королевским замком, Green Maw, Buried Harbor и погодой. Автор <code>BoryaZhivotnoe</code> учтён как Азат. Правки этого сайта в расчёт не включены.</p>
         <p>Ниже — условные баллы из 100. Веса направлений и распределение внутри них выбраны при анализе, а не измерены GitHub. Поэтому итог показан со знаком «≈».</p>
         <div class="assessment-table-wrap">
           <table class="assessment-table">
             <caption>Расчёт: К. — Константин, А. — Азат. Баллы не обозначают часы работы.</caption>
             <thead><tr><th scope="col">Направление</th><th scope="col">Вес</th><th scope="col">К.</th><th scope="col">А.</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Основа прототипа и доставка</th><td>7</td><td>7</td><td>0</td></tr>
-              <tr><th scope="row">HUB, острова, замок, локации и свет</th><td>16</td><td>11</td><td>5</td></tr>
-              <tr><th scope="row">Игрок, тело, анимации, смерть и revive</th><td>17</td><td>10</td><td>7</td></tr>
-              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>13</td><td>6</td><td>7</td></tr>
-              <tr><th scope="row">Лодки, upgrade, docking и физический груз</th><td>14</td><td>7</td><td>7</td></tr>
-              <tr><th scope="row">Инвентарь, quick slots и self-revive</th><td>10</td><td>10</td><td>0</td></tr>
-              <tr><th scope="row">Морские существа и Shark AI</th><td>8</td><td>8</td><td>0</td></tr>
-              <tr><th scope="row">Аудио, HUD и feedback урона</th><td>8</td><td>7</td><td>1</td></tr>
-              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>7</td><td>4</td><td>3</td></tr>
+              <tr><th scope="row">Основа прототипа и доставка</th><td>6</td><td>6</td><td>0</td></tr>
+              <tr><th scope="row">HUB, замок, локации и свет</th><td>18</td><td>10</td><td>8</td></tr>
+              <tr><th scope="row">Экспедиционные миры, биомы и погода</th><td>16</td><td>3</td><td>13</td></tr>
+              <tr><th scope="row">Игрок, тело, анимации, смерть и revive</th><td>14</td><td>8</td><td>6</td></tr>
+              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>10</td><td>5</td><td>5</td></tr>
+              <tr><th scope="row">Лодки, upgrade, docking и физический груз</th><td>11</td><td>6</td><td>5</td></tr>
+              <tr><th scope="row">Инвентарь, quick slots и self-revive</th><td>8</td><td>8</td><td>0</td></tr>
+              <tr><th scope="row">Морские существа и Shark AI</th><td>6</td><td>6</td><td>0</td></tr>
+              <tr><th scope="row">Аудио, HUD и feedback урона</th><td>5</td><td>4</td><td>1</td></tr>
+              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>6</td><td>4</td><td>2</td></tr>
             </tbody>
-            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>70</td><td>30</td></tr></tfoot>
+            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>60</td><td>40</td></tr></tfoot>
           </table>
         </div>
         <div class="assessment-evidence">
           <p><strong>Примеры вклада Константина:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/9d857a5186cec283cc8191529ae76d3acc9ea79f" target="_blank" rel="noopener noreferrer">сборка HUB</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b2d493122cbd69dd42f73d2ad4cbd9ad27508ed9" target="_blank" rel="noopener noreferrer">свет и туман</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/79cb7b4da74b2a150bab86f8b2b8f381b72b244d" target="_blank" rel="noopener noreferrer">hit/damage feedback</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/611344b75c66bc3a22d64d091be173e6da9c8a20" target="_blank" rel="noopener noreferrer">последние фиксы коллизий лодки</a> и текущая ветка с инвентарём, self-revive, морской экосистемой, docking и water/gameplay polish.</p>
-          <p><strong>Примеры вклада Азата:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/5e870aecf661e4c1f12cb3a8f9acf0238e9a3d4b" target="_blank" rel="noopener noreferrer">механика плавания</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/a07aa0bc72893ab0c742d03d9674245a0d147084" target="_blank" rel="noopener noreferrer">физическое тело игрока</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/dc43535c167300f0419b71db5fd477a32755e559" target="_blank" rel="noopener noreferrer">королевская зона</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b228cba8aa5a99c4d815d63c622478260e7f642a" target="_blank" rel="noopener noreferrer">морские волны</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/5037fdc4231ae58b4a5cac8421519e1276eebc14" target="_blank" rel="noopener noreferrer">экспедиционная лодка</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/ec7ffcfca89c792f473c0821d813aefc0ca02b83" target="_blank" rel="noopener noreferrer">коллизии окружения</a> и <a href="https://github.com/venextreme2/Curio-Crew/commit/77765d0f" target="_blank" rel="noopener noreferrer">локация на холме в HUB</a>.</p>
+          <p><strong>Примеры вклада Азата:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/5e870aecf661e4c1f12cb3a8f9acf0238e9a3d4b" target="_blank" rel="noopener noreferrer">механика плавания</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/a07aa0bc72893ab0c742d03d9674245a0d147084" target="_blank" rel="noopener noreferrer">физическое тело игрока</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/dc43535c167300f0419b71db5fd477a32755e559" target="_blank" rel="noopener noreferrer">королевская зона</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/5182215e17bd1317cfc9fd90052757a99d9b647a" target="_blank" rel="noopener noreferrer">замок, HubTown V2 и Green Maw</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/d2ec234654513bbdbf4b252cfcbd4974ed2420c3" target="_blank" rel="noopener noreferrer">уникальная погода островов</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/5037fdc4231ae58b4a5cac8421519e1276eebc14" target="_blank" rel="noopener noreferrer">экспедиционная лодка</a> и <a href="https://github.com/venextreme2/Curio-Crew/commit/ec7ffcfca89c792f473c0821d813aefc0ca02b83" target="_blank" rel="noopener noreferrer">коллизии окружения</a>.</p>
         </div>
         <p class="assessment-limit">Merge-коммиты, повторы одной реализации, отменённые эксперименты и объём импортированных ассетов не дают дополнительных баллов. Реальные исправления интеграции учтены отдельно. Git не показывает все обсуждения, тестирование, совместную работу и незапушенные изменения. Автор коммита — ориентир, а не доказательство единоличного выполнения. Веса можно пересмотреть после совместной проверки.</p>
         <p>Это сохранённый срез на указанную дату, а не автоматический счётчик активности. Новые изменения требуют повторной оценки.</p>
@@ -129,15 +130,15 @@
 
     <section class="hero-card">
       <div class="hero-text">
-        <span class="eyebrow">Актуально • 21 сентября 2026</span>
+        <span class="eyebrow">Актуально • 22 сентября 2026</span>
         <h2>Кооперативная first-person экспедиция, где артефакты меняют правила миссии</h2>
         <p>Holy Ship! — игра на 1–4 игроков с компактными островами, физикой, странными артефактами, опасными явлениями и юмором, который рождается из действий самой команды. HUB строится как средневековый портовый город: игроки готовятся к вылазке, уходят на лодке на 15–25 минут, возвращают добычу и продвигаются у короля.</p>
 
         <div class="hero-grid">
-          <div class="mini-card"><h3>HUB</h3><p>Порт, площадь, рынок, королевская зона и отдельная локация на холме уже собраны. У пирса появились доска улучшений лодки и рабочая зона стыковки; сама миссионная доска остаётся точкой доступа к экспедициям.</p></div>
+          <div class="mini-card"><h3>HUB</h3><p>HubTown V2 получил более цельные улицы, растительность и подъём к королевскому замку. В замок можно войти: внутри собран тронный зал с королём. Порт, рынок, лодочная доска и зона стыковки сохранены.</p></div>
           <div class="mini-card"><h3>Игрок</h3><p>Есть first-person движение и руки, полноценное тело и тень, здоровье/стамина, Downed/Death и recoverable ragdoll. В текущей ветке добавлены рюкзак 6×5, quick slots 1–9, постоянные/аксессуарные слоты, self-revive расходник и контекстные действия предметов.</p></div>
-          <div class="mini-card"><h3>Вода и физика</h3><p>Вода учитывает динамическую поверхность волн, работают плавание, утопление, подводный режим и damage feedback. В HUB появились обычные рыбы и тестовые хищники, а лодочная система получила upgrade, docking и дополнительные физические фиксы.</p></div>
-          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Стабилизация docking/управления лодкой, финальный UX инвентаря и использования предметов, Shark AI и морская экосистема, water polish и общий визуальный pass HubTown.</p></div>
+          <div class="mini-card"><h3>Экспедиции</h3><p>Green Maw собран как плотные тропические джунгли с руинами, побережьем и водопадом. Buried Harbor — пустынный портовый остров. В игре постоянно работают тропический ливень с туманом и плотная песчаная буря с собственной палитрой и звуком.</p></div>
+          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Наполнение островов игровыми целями, артефактами и противниками, полный цикл HUB → экспедиция → возврат, сетевые проверки и дальнейшая оптимизация тяжёлых сцен.</p></div>
         </div>
 
         <div class="project-tags">
@@ -151,9 +152,9 @@
     </section>
 
     <section class="project-snapshot" aria-label="Актуальный срез проекта">
-      <div class="snapshot-card"><strong id="taskTotal">80</strong><span>задач сейчас хранится в общем трекере проекта</span></div>
-      <div class="snapshot-card"><strong id="taskDone">31</strong><span>задача отмечена как полностью сделанная</span></div>
-      <div class="snapshot-card"><strong id="taskDoing">17</strong><span>задач сейчас отмечены как «в разработке»</span></div>
+      <div class="snapshot-card"><strong id="taskTotal">84</strong><span>задачи сейчас хранится в общем трекере проекта</span></div>
+      <div class="snapshot-card"><strong id="taskDone">42</strong><span>задачи отмечены как полностью сделанные</span></div>
+      <div class="snapshot-card"><strong id="taskDoing">25</strong><span>задач сейчас отмечены как «в разработке»</span></div>
       <div class="snapshot-card"><strong id="artifactCount">6</strong><span>обычных системных артефактов описано в каталоге</span></div>
       <div class="snapshot-card"><strong>1–4</strong><span>игрока в одной экспедиционной команде</span></div>
       <div class="snapshot-card"><strong>15–25</strong><span>минут — целевая длительность одной островной миссии</span></div>
@@ -199,12 +200,12 @@
 
       <div class="price-card">
         <div class="price-icon" aria-hidden="true">₽</div>
-        <div><span>Ориентир цены за копию</span><strong>≈ 299 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 21.09.2026</small></div>
+        <div><span>Ориентир цены за копию</span><strong>≈ 299 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 22.09.2026</small></div>
       </div>
       <details class="price-assessment">
         <summary>Почему 299 ₽</summary>
         <p><strong>Предварительный ориентир: 249–399 ₽.</strong> 299 ₽ — аналитическое предложение для бюджетной кооперативной игры, не установленная цена магазина и не стоимость разработки проекта.</p>
-        <p>В проекте уже есть HUB, физические взаимодействия, тело игрока, плавание, аудио, лодка с upgrade/docking, recoverable ragdoll, hit/damage feedback, прототип инвентаря, self-revive и морские существа. Это заметно более зрелый прототип, но не подтверждение готовности к продаже: полный сетевой цикл экспедиции, объём островного контента, прогрессия и стабильность ещё требуют проверки.</p>
+        <p>В проекте уже есть HubTown V2 с замком и тронным залом, две крупные экспедиционные сцены, уникальная погода, физические взаимодействия, тело игрока, плавание, аудио, лодка с upgrade/docking, recoverable ragdoll, hit/damage feedback, инвентарь, self-revive и морские существа. Это заметно более зрелый прототип, но не подтверждение готовности к продаже: полный сетевой цикл экспедиции, противники, артефакты, прогрессия и стабильность ещё требуют проверки.</p>
         <p>Цену стоит подтвердить после внешнего плейтеста продаваемой сборки. Планы на острова и артефакты не считаются уже готовым контентом.</p>
         <p>Рыночные ориентиры для сравнения, а не формула цены: <a href="https://steamdb.info/app/1966720/" target="_blank" rel="noopener noreferrer">Lethal Company — региональные цены</a> и <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer">R.E.P.O. — формат и состав игры</a>. Обоснование текущих систем: <a href="devlog.html#day-2026-09-19">дневник разработки</a>.</p>
       </details>
