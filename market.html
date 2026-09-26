@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Holy Ship! — Рынок</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="market-items.css?v=20260926">
+</head>
+<body class="market-page">
+<header>
+  <a class="brand" href="index.html"><h1>Holy Ship!</h1><p>Игровая база</p></a>
+  <div class="header-actions">
+    <nav class="site-nav">
+      <a href="index.html">Разработка</a>
+      <a href="artifacts.html">Артефакты</a>
+      <a href="royal-artifacts.html">Королевские артефакты</a>
+      <a href="islands.html">Острова</a>
+      <a href="mobs.html">Мобы</a>
+      <a class="active" href="market.html">Рынок</a>
+      <a href="devlog.html">Дневник</a>
+    </nav>
+    <button id="addMarketItem" class="primary">+ Предмет</button>
+  </div>
+</header>
+
+<main class="market-main">
+  <section class="market-hero">
+    <div>
+      <span class="eyebrow">Holy Ship! • проектирование экономики</span>
+      <h2>Рынок и экспедиционное снаряжение</h2>
+      <p>Черновая база предметов. Разработку механик рынка временно ставим на паузу до появления полноценных мобов, погоды и системы миссий. Все строки можно редактировать прямо здесь.</p>
+    </div>
+    <div class="market-pause">
+      <span class="pause-dot"></span>
+      <div><b>СТАТУС: ПАУЗА</b><small>Вернуться после мобов + mission loop</small></div>
+    </div>
+  </section>
+
+  <section class="rules-hud" aria-label="Правила веса и инвентаря">
+    <div class="rules-title">
+      <span>ПРОГРЕССИЯ ГРУЗОПОДЪЁМНОСТИ</span>
+      <small>+5 кг за каждый новый королевский ранг</small>
+    </div>
+    <div class="rank-grid">
+      <article class="rank-card tier-1"><span>I</span><div><b>Прибрежный</b><strong>30 кг</strong></div></article>
+      <article class="rank-card tier-2"><span>II</span><div><b>Экспедиционный</b><strong>35 кг</strong></div></article>
+      <article class="rank-card tier-3"><span>III</span><div><b>Штурманский</b><strong>40 кг</strong></div></article>
+      <article class="rank-card tier-4"><span>IV</span><div><b>Капитанский</b><strong>45 кг</strong></div></article>
+      <article class="rank-card tier-5"><span>V</span><div><b>Королевский</b><strong>50 кг</strong></div></article>
+      <article class="rank-card tier-6"><span>VI</span><div><b>Легендарный</b><strong>55 кг</strong></div></article>
+    </div>
+    <div class="inventory-rule">
+      <span class="rule-icon">▦</span>
+      <div><b>Инвентарь: ориентир 8–12 клеток</b><small>Маленькие вещи: 1–2 клетки • средние: 4–8 • абсолютный максимум с расширениями: <strong>16 клеток</strong></small></div>
+    </div>
+  </section>
+
+  <section class="market-summary">
+    <article><small>ПРЕДМЕТОВ</small><strong id="countAll">30</strong></article>
+    <article><small>ГРЕГОР</small><strong id="countGregor">0</strong></article>
+    <article><small>МАРТА</small><strong id="countMarta">0</strong></article>
+    <article><small>БРУНО</small><strong id="countBruno">0</strong></article>
+    <article><small>В РУКАХ</small><strong id="countHeld">0</strong></article>
+  </section>
+
+  <section class="market-toolbar">
+    <label class="market-search"><span>ПОИСК</span><input id="marketSearch" placeholder="Название, эффект, минус..."></label>
+    <label><span>ТИР</span><select id="tierFilter"><option value="all">Все</option><option value="1">Tier I</option><option value="2">Tier II</option><option value="3">Tier III</option><option value="4">Tier IV</option><option value="5">Tier V</option><option value="6">Tier VI</option></select></label>
+    <label><span>ТОРГОВЕЦ</span><select id="vendorFilter"><option value="all">Все</option><option value="Грегор">Грегор</option><option value="Марта">Марта</option><option value="Бруно">Бруно</option></select></label>
+    <label><span>ВЕРСИЯ</span><select id="scopeFilter"><option value="all">Все</option><option value="alpha">Alpha</option><option value="late_alpha">Поздняя Alpha</option><option value="future">Будущее</option></select></label>
+    <button id="resetFilters" type="button">Сбросить</button>
+  </section>
+
+  <section class="table-shell">
+    <div class="table-headline">
+      <div><span class="hud-mark">◆</span><b>КАТАЛОГ РЫНКА</b></div>
+      <span id="marketState">Синхронизация...</span>
+    </div>
+    <div class="table-scroll">
+      <table class="market-table">
+        <thead>
+          <tr>
+            <th class="col-no">#</th>
+            <th>Тир</th>
+            <th>Торговец</th>
+            <th>Предмет</th>
+            <th>Вес</th>
+            <th>Инвентарь</th>
+            <th>Функция</th>
+            <th>Минус / баланс</th>
+            <th>Цена</th>
+            <th>Версия</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="marketRows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<dialog id="marketDialog" class="market-dialog">
+<form id="marketForm">
+  <input id="itemId" type="hidden">
+  <div class="dialog-title">
+    <div><span>MARKET DATABASE</span><h2 id="marketFormTitle">Предмет рынка</h2></div>
+    <button type="button" id="closeMarketDialog" class="dialog-x">×</button>
+  </div>
+
+  <div class="market-form-grid">
+    <label><span>№</span><input id="itemNo" type="number" min="1" max="99" required></label>
+    <label><span>Tier</span><select id="itemTier" required><option value="1">I — Прибрежный</option><option value="2">II — Экспедиционный</option><option value="3">III — Штурманский</option><option value="4">IV — Капитанский</option><option value="5">V — Королевский</option><option value="6">VI — Легендарный</option></select></label>
+    <label><span>Торговец</span><select id="itemVendor" required><option>Грегор «Два Ценника»</option><option>Марта «Семь Узлов»</option><option>Бруно «Тихая Сделка»</option></select></label>
+    <label><span>Тип</span><input id="itemType" placeholder="Расходник / Аксессуар / Инструмент"></label>
+
+    <label class="wide"><span>Название</span><input id="itemName" required></label>
+    <label><span>Вес, кг</span><input id="itemWeight" type="number" min="0" step="0.1" required></label>
+    <label><span>Цена, мон.</span><input id="itemPrice" type="number" min="0" step="1" required></label>
+    <label><span>Инвентарь</span><input id="itemInventory" placeholder="1 клетка / 4 клетки / экипировка"></label>
+    <label class="check-label"><input id="itemHeld" type="checkbox"><span>Нужно держать в руках</span></label>
+
+    <label class="wide"><span>Функция</span><textarea id="itemEffect" rows="4" required></textarea></label>
+    <label class="wide"><span>Минус / баланс</span><textarea id="itemDrawback" rows="3"></textarea></label>
+
+    <label><span>План версии</span><select id="itemScope"><option value="alpha">Alpha</option><option value="late_alpha">Поздняя Alpha</option><option value="future">Будущее</option></select></label>
+    <label><span>Статус реализации</span><select id="itemImplementation"><option value="paused">Пауза</option><option value="planned">Запланировано</option><option value="doing">В разработке</option><option value="done">Готово</option></select></label>
+    <label class="wide"><span>Заметки</span><textarea id="itemNotes" rows="3"></textarea></label>
+  </div>
+
+  <div class="dialog-actions">
+    <button id="deleteMarketItem" type="button" class="danger hidden">Удалить</button>
+    <span></span>
+    <button id="cancelMarketItem" type="button">Отмена</button>
+    <button type="submit" class="primary">Сохранить</button>
+  </div>
+</form>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="market-items.js?v=20260926"></script>
+</body>
+</html>
