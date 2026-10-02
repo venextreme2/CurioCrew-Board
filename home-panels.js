@@ -15,6 +15,9 @@
   const taskDone=document.querySelector('#taskDone');
   const taskDoing=document.querySelector('#taskDoing');
   const artifactCount=document.querySelector('#artifactCount');
+  const completionValues=[...document.querySelectorAll('.project-completion-value')];
+  const completionMeters=[...document.querySelectorAll('.project-completion-meter span')];
+  const completionCaptions=[...document.querySelectorAll('.project-completion-caption')];
   if(!alphaOut||!betaOut||!releaseOut||!editor)return;
 
   let values={alpha:'?',beta:'?',release:'?'};
@@ -47,9 +50,14 @@
     if(!taskError&&Array.isArray(taskRows)){
       const done=taskRows.filter(row=>row.status==='done').length;
       const doing=taskRows.filter(row=>row.status==='doing').length;
+      const active=taskRows.filter(row=>row.status!=='cancelled').length;
+      const completion=active?Math.round(done/active*100):0;
       if(taskTotal)taskTotal.textContent=String(taskRows.length);
       if(taskDone)taskDone.textContent=String(done);
       if(taskDoing)taskDoing.textContent=String(doing);
+      completionValues.forEach(el=>el.textContent=`≈${completion}%`);
+      completionMeters.forEach(el=>el.style.width=`${completion}%`);
+      completionCaptions.forEach(el=>el.textContent=`${done} из ${active} активных задач закрыто. Это прогресс трекера, а не обещание «${completion}% до релиза».`);
     }else if(taskError)console.error(taskError);
     if(!artifactError&&artifactCount&&Number.isFinite(artifacts))artifactCount.textContent=String(artifacts);
     else if(artifactError)console.error(artifactError);
