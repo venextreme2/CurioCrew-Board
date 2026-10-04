@@ -1,13 +1,59 @@
 const C={planned:["Запланировано","planned"],doing:["В разработке","doing"],done:["СДЕЛАНО","done"],cancelled:["Не делаем","cancelled"]};
 const STATUS_ORDER={doing:0,planned:1,done:2,cancelled:3};
+const URGENCY={
+  1:["1 · Можно позже","urgency-1"],
+  2:["2 · Нужно заняться","urgency-2"],
+  3:["3 · Супер Срочно!!!","urgency-3"]
+};
 const sb=supabase.createClient(window.CURIOCREW_CONFIG.supabaseUrl,window.CURIOCREW_CONFIG.supabaseAnonKey);
 let tasks=[],filter="all",sort="newest",page=1,pageSize=10;
 const $=s=>document.querySelector(s);
 function ensureCodexPromptField(){if($("#codexPromptWrap"))return;const actions=$("#form .actions");if(!actions)return;const label=document.createElement("label");label.id="codexPromptWrap";label.className="task-codex-field";label.textContent="Промт для Codex";const textarea=document.createElement("textarea");textarea.id="codexPrompt";textarea.rows=7;textarea.placeholder="Отдельный технический промт для Codex";label.appendChild(textarea);actions.parentNode.insertBefore(label,actions);}
 ensureCodexPromptField();
+async function copyPrompt(text,button){
+  const value=String(text||"");
+  if(!value)return;
+  try{
+    if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(value);
+    else{
+      const area=document.createElement("textarea");area.value=value;area.setAttribute("readonly","");
+      area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();
+      document.execCommand("copy");area.remove();
+    }
+    const old=button.textContent;button.textContent="✓ Скопировано";button.classList.add("copied");
+    setTimeout(()=>{button.textContent=old;button.classList.remove("copied");},1400);
+  }catch(error){console.error(error);alert("Не удалось скопировать промт.");}
+}
 async function load(){const {data,error}=await sb.from("tasks").select("*");if(error){$("#connection").textContent="Ошибка подключения";console.error(error);return}tasks=data||[];$("#connection").textContent="Общий режим • синхронизация включена";render();}
-function sortedTasks(){const list=tasks.filter(t=>filter==="all"||t.status===filter).slice();const byTitle=(a,b)=>(a.title||"").localeCompare(b.title||"","ru",{sensitivity:"base"});list.sort((a,b)=>{if(sort==="oldest")return new Date(a.created_at)-new Date(b.created_at);if(sort==="title-asc")return byTitle(a,b);if(sort==="title-desc")return byTitle(b,a);if(sort==="status"){const statusDiff=(STATUS_ORDER[a.status]??99)-(STATUS_ORDER[b.status]??99);return statusDiff||new Date(b.created_at)-new Date(a.created_at);}return new Date(b.created_at)-new Date(a.created_at);});return list;}
-function render(){const root=$("#tasks");root.innerHTML="";const list=sortedTasks();const totalPages=Math.max(1,Math.ceil(list.length/pageSize));page=Math.min(Math.max(page,1),totalPages);const start=(page-1)*pageSize;const shown=list.slice(start,start+pageSize);shown.forEach(t=>{const a=document.createElement("article");a.className="card";const [txt,cls]=C[t.status]||C.planned;a.innerHTML=`<div class="top"><span class="pill ${cls}">${txt}</span><button class="edit">Изменить</button></div><h3></h3><p></p>${t.image_url?'<img alt="">':''}<div class="task-codex-slot"></div><div class="quick"><button data-s="doing">В разработке</button><button data-s="done">✓ Сделано</button><button data-s="cancelled">Не делаем</button></div>`;a.querySelector("h3").textContent=t.title;a.querySelector("p").textContent=t.description||"";if(t.image_url)a.querySelector("img").src=t.image_url;if(t.codex_prompt){const details=document.createElement("details");details.className="codex-prompt task-codex-prompt";const summary=document.createElement("summary");summary.textContent="Промт для Codex";const body=document.createElement("div");body.textContent=t.codex_prompt;details.append(summary,body);a.querySelector(".task-codex-slot").appendChild(details);}a.querySelector(".edit").onclick=()=>edit(t);a.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>setStatus(t.id,b.dataset.s));root.appendChild(a);});if(!shown.length)root.innerHTML='<div class="empty-state">Задач с такими параметрами пока нет.</div>';renderPagination(list.length,totalPages,start,shown.length);}
+function sortedTasks(){const list=tasks.filter(t=>filter==="all"||t.status===filter).slice();const byTitle=(a,b)=>(a.title||"").localeCompare(b.title||"","ru",{sensitivity:"base"});list.sort((a,b)=>{if(sort==="oldest")return new Date(a.created_at)-new Date(b.created_at);if(sort==="title-asc")return byTitle(a,b);if(sort==="title-desc")return byTitle(b,a);if(sort==="urgency"){const urgencyDiff=(Number(b.urgency)||1)-(Number(a.urgency)||1);return urgencyDiff||new Date(b.created_at)-new Date(a.created_at);}if(sort==="status"){const statusDiff=(STATUS_ORDER[a.status]??99)-(STATUS_ORDER[b.status]??99);return statusDiff||new Date(b.created_at)-new Date(a.created_at);}return new Date(b.created_at)-new Date(a.created_at);});return list;}
+function render(){
+  const root=$("#tasks");root.innerHTML="";
+  const list=sortedTasks();const totalPages=Math.max(1,Math.ceil(list.length/pageSize));
+  page=Math.min(Math.max(page,1),totalPages);const start=(page-1)*pageSize;const shown=list.slice(start,start+pageSize);
+  shown.forEach(t=>{
+    const a=document.createElement("article");a.className="card";
+    const [txt,cls]=C[t.status]||C.planned;
+    const urgency=Math.min(3,Math.max(1,Number(t.urgency)||1));
+    const [urgencyText,urgencyClass]=URGENCY[urgency];
+    a.innerHTML=`<div class="top"><div class="task-badges"><span class="pill ${cls}">${txt}</span><span class="urgency-pill ${urgencyClass}">${urgencyText}</span></div><button class="edit">Изменить</button></div><h3></h3><p></p>${t.image_url?'<img alt="">':''}<div class="task-codex-slot"></div><div class="quick"><button data-s="doing">В разработке</button><button data-s="done">✓ Сделано</button><button data-s="cancelled">Не делаем</button></div>`;
+    a.querySelector("h3").textContent=t.title;a.querySelector("p").textContent=t.description||"";
+    if(t.image_url)a.querySelector("img").src=t.image_url;
+    if(t.codex_prompt){
+      const details=document.createElement("details");details.className="codex-prompt task-codex-prompt";
+      const summary=document.createElement("summary");summary.textContent="Промт для Codex";
+      const body=document.createElement("div");body.className="codex-prompt-body";
+      const prompt=document.createElement("div");prompt.className="codex-prompt-text";prompt.textContent=t.codex_prompt;
+      const copy=document.createElement("button");copy.type="button";copy.className="copy-codex";copy.textContent="Скопировать весь промт";
+      copy.onclick=()=>copyPrompt(t.codex_prompt,copy);
+      body.append(prompt,copy);details.append(summary,body);a.querySelector(".task-codex-slot").appendChild(details);
+    }
+    a.querySelector(".edit").onclick=()=>edit(t);
+    a.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>setStatus(t.id,b.dataset.s));
+    root.appendChild(a);
+  });
+  if(!shown.length)root.innerHTML='<div class="empty-state">Задач с такими параметрами пока нет.</div>';
+  renderPagination(list.length,totalPages,start,shown.length);
+}
 function renderPagination(total,totalPages,start,shownCount){const meta=$("#taskMeta");meta.textContent=total?`Показано ${start+1}–${start+shownCount} из ${total}`:"0 задач";const root=$("#pagination");root.innerHTML="";if(totalPages<=1)return;const addButton=(label,target,disabled=false,active=false)=>{const button=document.createElement("button");button.type="button";button.textContent=label;if(active)button.classList.add("active");button.disabled=disabled;button.onclick=()=>{page=target;render();document.querySelector(".task-board")?.scrollIntoView({behavior:"smooth",block:"start"})};root.appendChild(button);};addButton("←",page-1,page===1);const pages=[];if(totalPages<=7){for(let i=1;i<=totalPages;i++)pages.push(i)}else{pages.push(1);if(page>3)pages.push("…");for(let i=Math.max(2,page-1);i<=Math.min(totalPages-1,page+1);i++)pages.push(i);if(page<totalPages-2)pages.push("…");pages.push(totalPages);}pages.forEach(p=>{if(p==="…"){const span=document.createElement("span");span.className="pagination-ellipsis";span.textContent=p;root.appendChild(span);}else addButton(String(p),p,false,p===page);});addButton("→",page+1,page===totalPages);}
 async function setStatus(id,status){const {error}=await sb.from("tasks").update({status}).eq("id",id);if(error)return alert(error.message);await load();}
 const imageDrop=$("#imageDrop");const imageFile=$("#imageFile");const imageInput=$("#image");const imagePreview=$("#imagePreview");const imageDropText=$("#imageDropText");const clearImage=$("#clearImage");
@@ -16,9 +62,9 @@ function fileToDataUrl(file){return new Promise((resolve,reject)=>{const reader=
 function loadImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(new Error("Не удалось открыть изображение"));img.src=src;});}
 async function prepareImage(file){if(!file||!file.type.startsWith("image/")){alert("Выбери изображение");return;}if(file.size>15*1024*1024){alert("Картинка слишком большая. Максимум 15 МБ.");return;}try{const source=await fileToDataUrl(file);const img=await loadImage(source);const maxSide=1400;const scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));const width=Math.max(1,Math.round(img.naturalWidth*scale));const height=Math.max(1,Math.round(img.naturalHeight*scale));const canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;canvas.getContext("2d").drawImage(img,0,0,width,height);imageInput.value=canvas.toDataURL("image/webp",0.82);refreshImagePreview();}catch(error){console.error(error);alert("Не удалось обработать картинку");}}
 imageDrop.onclick=()=>imageFile.click();imageDrop.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();imageFile.click();}};imageFile.onchange=()=>{prepareImage(imageFile.files?.[0]);imageFile.value="";};imageDrop.ondragenter=imageDrop.ondragover=e=>{e.preventDefault();imageDrop.classList.add("dragging");};imageDrop.ondragleave=e=>{if(!imageDrop.contains(e.relatedTarget))imageDrop.classList.remove("dragging");};imageDrop.ondrop=e=>{e.preventDefault();imageDrop.classList.remove("dragging");prepareImage(e.dataTransfer.files?.[0]);};imageInput.oninput=refreshImagePreview;clearImage.onclick=()=>{imageInput.value="";refreshImagePreview();};
-function edit(t=null){$("#formTitle").textContent=t?"Изменить задачу":"Новая задача";$("#id").value=t?.id||"";$("#title").value=t?.title||"";$("#description").value=t?.description||"";$("#status").value=t?.status||"planned";$("#image").value=t?.image_url||"";$("#codexPrompt").value=t?.codex_prompt||"";refreshImagePreview();$("#delete").classList.toggle("hidden",!t);$("#dialog").showModal();}
+function edit(t=null){$("#formTitle").textContent=t?"Изменить задачу":"Новая задача";$("#id").value=t?.id||"";$("#title").value=t?.title||"";$("#description").value=t?.description||"";$("#status").value=t?.status||"planned";$("#urgency").value=String(t?.urgency||1);$("#image").value=t?.image_url||"";$("#codexPrompt").value=t?.codex_prompt||"";refreshImagePreview();$("#delete").classList.toggle("hidden",!t);$("#dialog").showModal();}
 $("#addTask").onclick=()=>edit();$("#cancel").onclick=()=>$("#dialog").close();
-$("#form").onsubmit=async e=>{e.preventDefault();const id=$("#id").value;const p={title:$("#title").value.trim(),description:$("#description").value.trim(),status:$("#status").value,image_url:$("#image").value.trim(),codex_prompt:$("#codexPrompt").value.trim()};const q=id?sb.from("tasks").update(p).eq("id",id):sb.from("tasks").insert(p);const {error}=await q;if(error)return alert(error.message);$("#dialog").close();page=1;await load();};
+$("#form").onsubmit=async e=>{e.preventDefault();const id=$("#id").value;const p={title:$("#title").value.trim(),description:$("#description").value.trim(),status:$("#status").value,urgency:Number($("#urgency").value)||1,image_url:$("#image").value.trim(),codex_prompt:$("#codexPrompt").value.trim()};const q=id?sb.from("tasks").update(p).eq("id",id):sb.from("tasks").insert(p);const {error}=await q;if(error)return alert(error.message);$("#dialog").close();page=1;await load();};
 $("#delete").onclick=async()=>{const id=$("#id").value;if(!id||!confirm("Удалить задачу?"))return;const {error}=await sb.from("tasks").delete().eq("id",id);if(error)return alert(error.message);$("#dialog").close();await load();};
 document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;page=1;render();});
 $("#taskSort").onchange=e=>{sort=e.target.value;page=1;render()};$("#pageSize").onchange=e=>{pageSize=Number(e.target.value)||10;page=1;render()};
