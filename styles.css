@@ -38,3 +38,19 @@ dialog{width:min(760px,calc(100vw - 28px));max-height:90vh;overflow:auto;backgro
 .detail-accordion[open] summary{border-bottom:1px solid #29352f}
 .detail-content{padding:12px 14px 14px;font-size:14px;line-height:1.52;white-space:pre-wrap;overflow-wrap:anywhere;color:#e4e8e5}
 @media(max-width:760px){.detail-list{grid-template-columns:1fr}}
+
+
+/* Task urgency */
+.task-badges{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.urgency-pill{font-size:12px;font-weight:850;padding:5px 9px;border-radius:999px;border:1px solid transparent}
+.urgency-1{background:#24302a;color:#b9c6bf;border-color:#3a4941}
+.urgency-2{background:#4a3918;color:#ffdc86;border-color:#705523}
+.urgency-3{background:#4a2220;color:#ffaaa1;border-color:#7a3631;box-shadow:0 0 0 1px #cf756b20 inset}
+
+/* Codex prompt copy */
+.codex-prompt-body{display:grid;gap:12px}
+.codex-prompt-text{white-space:pre-wrap;line-height:1.55;overflow-wrap:anywhere}
+.copy-codex{justify-self:start;background:#17303a;border-color:#36515b;color:#9ee3ef;font-weight:800}
+.copy-codex:hover{background:#1d3b46;border-color:#4b7180}
+.copy-codex.copied{background:#183b27;border-color:#2e6b45;color:#92e4ad}
+@media(max-width:600px){.copy-codex{width:100%}.task-badges{align-items:flex-start}}
