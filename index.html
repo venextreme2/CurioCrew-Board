@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Holy Ship! — разработка</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="home-panels.css?v=20261003">
-<link rel="stylesheet" href="project-assessment.css?v=20261003">
+<link rel="stylesheet" href="styles.css?v=20261005">
+<link rel="stylesheet" href="home-panels.css?v=20261005">
+<link rel="stylesheet" href="project-assessment.css?v=20261005">
 </head>
 <body class="home-page">
 <header>
@@ -64,7 +64,7 @@
 
       <div class="team-status">
         <span class="live-dot" aria-hidden="true"></span>
-        <div><strong>Проект активен</strong><span>Сейчас: Ocean Transit между HUB и экспедициями — три океанские сцены, штормы, водяной смерч, гроза и перенос готовых expedition-систем. Сам HUB после большого арт-, аудио- и LOD-прохода уже находится на следующем уровне стабильности.</span></div>
+        <div><strong>Проект активен</strong><span>Ocean Transit уже интегрирован в develop: работают Main Menu, Host/Join/Reconnect, сохранение состояния экипажа и сетевой маршрут HUB → Ocean → экспедиция → Ocean → HUB. Финальный Host + 3 Client roundtrip пройден. Текущий фокус — общий UI/UX art pass, визуальная доводка HUB/Green Maw и следующий слой экспедиционного контента.</span></div>
       </div>
     </section>
   </aside>
@@ -73,32 +73,32 @@
     <section class="assessment-hud" id="team-contribution" aria-labelledby="contributionTitle">
       <div class="assessment-heading">
         <div><span class="assessment-kicker">Команда • вклад в разработку</span><h2 id="contributionTitle">Кто сколько сделал</h2></div>
-        <div class="assessment-stamp">GitHub + текущая ветка<time datetime="2026-10-03">03.10.2026</time></div>
+        <div class="assessment-stamp">GitHub • develop<time datetime="2026-10-05">05.10.2026</time></div>
       </div>
       <p class="assessment-intro">Доли в уже созданном игровом прототипе. Основа оценки — реализованные направления и авторство изменений, а не количество строк или коммитов.</p>
       <div class="contribution-cards">
         <article class="contribution-card konstantin-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Константин</h3><a href="https://github.com/venextreme2" target="_blank" rel="noopener noreferrer">venextreme2</a></div>
-            <div class="contribution-value" aria-label="Примерно 65 процентов"><small>≈</small>65<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 68 процентов"><small>≈</small>68<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Основа прототипа и большая часть gameplay-слоя: HUD/аудио и damage feedback, ragdoll/revive, инвентарь, self-revive, морские существа, верфь/docking и текущая стабилизация REBUILT HUB.</p>
+          <p>Основа gameplay-слоя и интеграция систем: HUD/аудио и damage feedback, ragdoll/revive, инвентарь, self-revive, морские существа, лодка/docking, а теперь также Ocean Transit, Main Menu, session/reconnect и сохранение состояния экипажа между сценами.</p>
         </article>
         <article class="contribution-card azat-contribution">
           <div class="contribution-card-top">
             <div class="contribution-person"><h3>Азат</h3><a href="https://github.com/AzatBagautdinov" target="_blank" rel="noopener noreferrer">AzatBagautdinov</a></div>
-            <div class="contribution-value" aria-label="Примерно 35 процентов"><small>≈</small>35<small>%</small></div>
+            <div class="contribution-value" aria-label="Примерно 32 процента"><small>≈</small>32<small>%</small></div>
           </div>
           <div class="contribution-meter" aria-hidden="true"><span></span></div>
-          <p>Крупный environment-набор: HubTown V2, Green Maw и Buried Harbor, районы/замок и player-level pass, Blender-наборы окружения, а также лодка/груз, вода, коллизии и часть систем игрока.</p>
+          <p>Крупный environment-набор: HubTown V2, Green Maw и Buried Harbor, районы/замок, пещеры и player-level pass, Blender-наборы окружения, а также вода, локальные water volumes, коллизии и часть систем игрока.</p>
         </article>
       </div>
       <div class="contribution-split" aria-hidden="true"><span class="konstantin-share"></span><span class="azat-share"></span></div>
       <p class="assessment-caveat">Приблизительная аналитическая оценка, не учёт часов и не доли владения. 100% здесь — всё уже сделанное, а не готовность игры к релизу.</p>
       <details class="assessment-method">
         <summary>Как оценён вклад и что учтено</summary>
-        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/develop" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> по 2 октября 2026 плюс текущая рабочая стадия Ocean Transit 3 октября. После REBUILT-миграции учтены население и арт-проход HUB, HUD/navigation polish, surface/water/lighting pass, world-edge fog, локальный soundscape и NPC-реплики, дальнее морское дно/архипелаг, Buried Harbor rebuild и финальная стабилизация районов/LOD. Авторство GitHub-коммитов используется как один из ориентиров; незакоммиченная совместная работа отдельно не превращается в «баллы». Правки этого сайта в расчёт не включены.</p>
+        <p>Срез истории <a href="https://github.com/venextreme2/Curio-Crew/tree/develop" target="_blank" rel="noopener noreferrer">Curio-Crew / develop</a> по 5 октября 2026. Учтены REBUILT HUB, HUD/navigation polish, water/lighting/audio pass, Green Maw и Buried Harbor, а также новый Ocean Transit: три морские сцены, session/reconnect, перенос игроков/лодки/груза и проверенный четырёхклиентный roundtrip. Авторство GitHub-коммитов используется как один из ориентиров; обсуждения и ручное тестирование не превращаются в отдельные «баллы». Правки этого сайта в расчёт не включены.</p>
         <p>Ниже — условные баллы из 100. Это оценка созданных направлений, а не часов, количества строк или стоимости работы. После большого environment-pass доля Азата выросла, при этом основной gameplay-пласт остаётся за Константином.</p>
         <div class="assessment-table-wrap">
           <table class="assessment-table">
@@ -106,38 +106,39 @@
             <thead><tr><th scope="col">Направление</th><th scope="col">Вес</th><th scope="col">К.</th><th scope="col">А.</th></tr></thead>
             <tbody>
               <tr><th scope="row">Основа прототипа и доставка</th><td>7</td><td>7</td><td>0</td></tr>
-              <tr><th scope="row">HUB, острова, замок и environment</th><td>22</td><td>9</td><td>13</td></tr>
-              <tr><th scope="row">Игрок, тело, анимации, смерть и revive</th><td>15</td><td>9</td><td>6</td></tr>
-              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>12</td><td>6</td><td>6</td></tr>
-              <tr><th scope="row">Лодки, верфь, docking и физический груз</th><td>15</td><td>10</td><td>5</td></tr>
-              <tr><th scope="row">Инвентарь, quick slots и self-revive</th><td>9</td><td>9</td><td>0</td></tr>
-              <tr><th scope="row">Морские существа и Shark AI</th><td>7</td><td>7</td><td>0</td></tr>
+              <tr><th scope="row">HUB, острова, замок и environment</th><td>20</td><td>8</td><td>12</td></tr>
+              <tr><th scope="row">Игрок, тело, анимации, смерть и revive</th><td>13</td><td>8</td><td>5</td></tr>
+              <tr><th scope="row">Вода, плавание и подводные эффекты</th><td>11</td><td>5</td><td>6</td></tr>
+              <tr><th scope="row">Лодки, верфь, docking и физический груз</th><td>13</td><td>9</td><td>4</td></tr>
+              <tr><th scope="row">Инвентарь, quick slots и self-revive</th><td>8</td><td>8</td><td>0</td></tr>
+              <tr><th scope="row">Морские существа и Shark AI</th><td>6</td><td>6</td><td>0</td></tr>
               <tr><th scope="row">Аудио, HUD и feedback урона</th><td>7</td><td>6</td><td>1</td></tr>
-              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>6</td><td>2</td><td>4</td></tr>
+              <tr><th scope="row">Инструменты, коллизии и стабилизация</th><td>5</td><td>1</td><td>4</td></tr>
+              <tr><th scope="row">Ocean Transit, session и переходы</th><td>10</td><td>10</td><td>0</td></tr>
             </tbody>
-            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>65</td><td>35</td></tr></tfoot>
+            <tfoot><tr><th scope="row">Итого</th><td>100</td><td>68</td><td>32</td></tr></tfoot>
           </table>
         </div>
         <div class="assessment-evidence">
-          <p><strong>Примеры вклада Константина:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/2fc713f" target="_blank" rel="noopener noreferrer">единый HUD/navigation pass</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/90491c2" target="_blank" rel="noopener noreferrer">world-edge fog и sea ambience</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/1af699f" target="_blank" rel="noopener noreferrer">локальный HUB soundscape и NPC-реплики</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/7f87209" target="_blank" rel="noopener noreferrer">дальнее морское дно и архипелаг</a> и <a href="https://github.com/venextreme2/Curio-Crew/commit/710a11c" target="_blank" rel="noopener noreferrer">финальная связность районов и стабильные LOD</a>.</p>
+          <p><strong>Примеры вклада Константина:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/2fc713f" target="_blank" rel="noopener noreferrer">единый HUD/navigation pass</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/1af699f" target="_blank" rel="noopener noreferrer">HUB soundscape и NPC-реплики</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/710a11c" target="_blank" rel="noopener noreferrer">финальная связность HUB</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/b2fd981" target="_blank" rel="noopener noreferrer">Ocean/session/state persistence</a> и <a href="https://github.com/venextreme2/Curio-Crew/commit/24f72cc" target="_blank" rel="noopener noreferrer">проверенный Host+3 Client roundtrip</a>.</p>
           <p><strong>Примеры вклада Азата:</strong> <a href="https://github.com/venextreme2/Curio-Crew/commit/56b38a0" target="_blank" rel="noopener noreferrer">дюны, пещерная система и spawn-точки Buried Harbor</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/7b735e5" target="_blank" rel="noopener noreferrer">major rebuild Buried Harbor</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/8e341d4" target="_blank" rel="noopener noreferrer">пересборка четырёх входов в пещеры</a>, <a href="https://github.com/venextreme2/Curio-Crew/commit/9ae454d" target="_blank" rel="noopener noreferrer">исправление terrain holes</a> и погодные фиксы sandstorm/stamina конца сентября.</p>
         </div>
         <p class="assessment-limit">Merge-коммиты, импорт ассетов и отменённые эксперименты сами по себе не увеличивают вклад. Git не показывает все обсуждения, тестирование и незапушенные изменения, поэтому автор коммита — ориентир, а не доказательство единоличной работы.</p>
-        <p>Это срез на 03.10.2026. Ocean Transit пока находится в работе и не считается завершённым вкладом до интеграции и Play Mode проверки.</p>
+        <p>Это срез на 05.10.2026. Ocean Transit уже находится в develop и прошёл отдельную интеграционную проверку; будущие UI/UX и контентные задачи в этот процент как готовая работа ещё не включены.</p>
       </details>
     </section>
 
     <section class="hero-card">
       <div class="hero-text">
-        <span class="eyebrow">Актуально • 3 октября 2026</span>
+        <span class="eyebrow">Актуально • 5 октября 2026</span>
         <h2>Кооперативная first-person экспедиция, где артефакты меняют правила миссии</h2>
         <p>Holy Ship! — кооперативная first-person игра на 1–4 игроков: команда готовится в живом средневековом HUB, выходит в море, проходит промежуточный Ocean Transit и отправляется на компактные экспедиционные острова за странными артефактами. Физика, лодка, погода и взаимодействия должны создавать истории сами — от спокойного плавания до шторма, потери груза и хаоса всей команды.</p>
 
         <div class="hero-grid">
           <div class="mini-card"><h3>HUB</h3><p><code>HUBTOWN_V2_REBUILT</code> стал основной сценой: порт, рынок, замок, верфь и жилые районы прошли заселение, material/lighting polish, world-edge fog, shoreline audio и LOD-проверку. В море добавлены дальнее дно и архипелаг, а локальные зоны получили собственный soundscape.</p></div>
-          <div class="mini-card"><h3>Игрок и интерфейс</h3><p>Работают first-person движение и руки, тело/тень, здоровье и стамина, Downed/Death, recoverable ragdoll, инвентарь, quick slots и self-revive. HUD, навигация, доски и игровые подсказки приведены к единому стилю, а NPC получили диалоговые реплики и локальное аудио.</p></div>
-          <div class="mini-card"><h3>Вода, лодка и экспедиции</h3><p>Вода и buoyancy используют одну динамическую поверхность волн; работают плавание, подводный режим, SeaLife и wave-impact feedback. Docking и helm-логика прошли серию фиксов, а Buried Harbor получил крупную пересборку пещер, погоды и маршрутов.</p></div>
-          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Строится Ocean Transit между HUB и экспедицией: три большие морские сцены — дневная, штормовая и экстремальная грозовая. В работе перенос expedition-систем, усиленные волны, тёмная вода, ливень, молнии и сетевой водяной смерч без прямого урона.</p></div>
+          <div class="mini-card"><h3>Игрок и интерфейс</h3><p>Работают first-person движение и руки, тело/тень, здоровье и стамина, Downed/Death, recoverable ragdoll, инвентарь, quick slots и self-revive. Есть Main Menu, Pause/Settings, навигация, доски, рынок, верфь и диалоги; теперь весь UI сводится в единый финальный визуальный язык.</p></div>
+          <div class="mini-card"><h3>Вода, лодка и экспедиции</h3><p>Вода и buoyancy используют общую динамическую поверхность волн; работают плавание, SeaLife, docking и helm. Ocean Transit теперь переносит экипаж, лодку и физический груз между HUB и экспедициями, а Buried Harbor сохраняет свои локальные water volumes, пещеры и погодные системы.</p></div>
+          <div class="mini-card"><h3>Сейчас в фокусе</h3><p>Технический Ocean/session слой закрыт и влит в develop. Следующий проход — полный UI/UX art pass по Main Menu, Pause/Settings, loading/readiness и Ocean HUD, параллельно с визуальной доводкой земли HUB, джунглей Green Maw и грозовой подачи.</p></div>
         </div>
 
         <div class="project-tags">
@@ -151,14 +152,14 @@
     </section>
 
     <section class="project-snapshot" aria-label="Актуальный срез проекта">
-      <div class="snapshot-card"><strong id="taskTotal">89</strong><span>задач сейчас хранится в общем трекере проекта</span></div>
-      <div class="snapshot-card"><strong id="taskDone">58</strong><span>задач отмечено как полностью сделанные</span></div>
-      <div class="snapshot-card"><strong class="project-completion-value">≈66%</strong><span>закрыто по текущему активному трекеру задач</span></div>
-      <div class="snapshot-card"><strong id="taskDoing">16</strong><span>задач сейчас отмечены как «в разработке»</span></div>
+      <div class="snapshot-card"><strong id="taskTotal">98</strong><span>задач сейчас хранится в общем трекере проекта</span></div>
+      <div class="snapshot-card"><strong id="taskDone">66</strong><span>задач отмечено как полностью сделанные</span></div>
+      <div class="snapshot-card"><strong class="project-completion-value">≈68%</strong><span>закрыто по текущему активному трекеру задач</span></div>
+      <div class="snapshot-card"><strong id="taskDoing">20</strong><span>задач сейчас отмечены как «в разработке»</span></div>
       <div class="snapshot-card"><strong id="artifactCount">6</strong><span>обычных системных артефактов описано в каталоге</span></div>
       <div class="snapshot-card"><strong>1–4</strong><span>игрока в одной экспедиционной команде</span></div>
       <div class="snapshot-card"><strong>15–25</strong><span>минут — целевая длительность одной островной миссии</span></div>
-      <div class="snapshot-card"><strong>3</strong><span>варианта Ocean Transit спроектированы; реализация сейчас в работе</span></div>
+      <div class="snapshot-card"><strong>3</strong><span>Ocean-сцены находятся в build и интегрированы в сетевой маршрут между HUB и экспедициями</span></div>
     </section>
 
     <section class="section-links">
@@ -180,7 +181,7 @@
           <button class="filter" data-filter="cancelled">Не делаем</button>
         </nav>
         <div class="task-controls">
-          <label>Сортировка<select id="taskSort"><option value="newest">Сначала новые</option><option value="oldest">Сначала старые</option><option value="status">По статусу</option><option value="title-asc">Название А–Я</option><option value="title-desc">Название Я–А</option></select></label>
+          <label>Сортировка<select id="taskSort"><option value="newest">Сначала новые</option><option value="oldest">Сначала старые</option><option value="status">По статусу</option><option value="urgency">По срочности</option><option value="title-asc">Название А–Я</option><option value="title-desc">Название Я–А</option></select></label>
           <label>На странице<select id="pageSize"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option><option value="50">50</option></select></label>
         </div>
       </div>
@@ -201,20 +202,20 @@
 
       <div class="price-card">
         <div class="price-icon" aria-hidden="true">₽</div>
-        <div><span>Ориентир цены за копию</span><strong>≈ 399 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 03.10.2026</small></div>
+        <div><span>Ориентир цены за копию</span><strong>≈ 399 ₽</strong><small>для первой продаваемой версии<br>оценка обновлена 05.10.2026</small></div>
       </div>
       <details class="price-assessment">
         <summary>Почему 399 ₽</summary>
         <p><strong>Предварительный ориентир: 349–499 ₽.</strong> 399 ₽ — рабочая цена для первой продаваемой версии, а не установленная цена Steam и не стоимость разработки проекта.</p>
-        <p>По текущему трекеру закрыто около двух третей активных задач: уже есть зрелый HUB, лодка/docking, вода и плавание, тело/смерть/revive, инвентарь, HUD, аудио, NPC, SeaLife, погодная инфраструктура и несколько authored expedition-зон. Следующий крупный слой — Ocean Transit и полноценный повторяемый сетевой цикл экспедиции.</p>
-        <p>Цену нужно окончательно подтвердить после внешнего кооперативного плейтеста и проверки реального объёма миссий. Незавершённые Ocean-сцены и будущий контент в цену как готовая ценность пока не засчитываются.</p>
+        <p>По текущему трекеру закрыто около двух третей активных задач. Уже есть зрелый HUB, лодка/docking, вода и плавание, смерть/revive, инвентарь, HUD, NPC, SeaLife и два authored expedition-острова. Сетевой Ocean Transit, Main Menu и session/reconnect уже интегрированы; следующий риск для цены — качество полного mission loop, контента островов и внешнего кооперативного плейтеста.</p>
+        <p>Цену нужно окончательно подтвердить после внешнего кооперативного плейтеста и проверки реального объёма миссий. Техническая связность сцен уже доказана, но будущие артефакты, мобы, награды и финальный объём островов нельзя засчитывать как готовую ценность заранее.</p>
         <p>Рыночные ориентиры для сравнения, а не формула цены: <a href="https://steamdb.info/app/1966720/" target="_blank" rel="noopener noreferrer">Lethal Company — региональные цены</a> и <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer">R.E.P.O. — формат и состав игры</a>. Обоснование текущих систем: <a href="devlog.html#day-2026-09-19">дневник разработки</a>.</p>
       </details>
 
       <div class="completion-card" aria-label="Готовность проекта по трекеру">
-        <div class="completion-card-top"><span>Готовность по трекеру</span><strong class="project-completion-value">≈66%</strong></div>
-        <div class="project-completion-meter" aria-hidden="true"><span style="width:66%"></span></div>
-        <small class="project-completion-caption">58 из 88 активных задач закрыто. Это прогресс трекера, а не обещание «66% до релиза».</small>
+        <div class="completion-card-top"><span>Готовность по трекеру</span><strong class="project-completion-value">≈68%</strong></div>
+        <div class="project-completion-meter" aria-hidden="true"><span style="width:68%"></span></div>
+        <small class="project-completion-caption">66 из 97 активных задач закрыто. Это прогресс трекера, а не обещание «68% до релиза».</small>
       </div>
 
       <div class="release-timeline" aria-live="polite">
@@ -256,6 +257,7 @@
   <label>Название<input id="title" required></label>
   <label>Описание<textarea id="description" rows="4"></textarea></label>
   <label>Статус<select id="status"><option value="planned">Запланировано</option><option value="doing">В разработке</option><option value="done">Сделано</option><option value="cancelled">Не делаем</option></select></label>
+  <label>Срочность<select id="urgency"><option value="1">1 - Можно позже</option><option value="2">2 - Нужно заняться</option><option value="3">3 - Супер Срочно!!!</option></select></label>
   <div class="image-field">
     <label>Картинка</label>
     <div id="imageDrop" class="image-drop" tabindex="0" role="button" aria-label="Загрузить картинку"><input id="imageFile" type="file" accept="image/*" hidden><div id="imageDropText"><strong>Перетащи картинку в эту область</strong><small>Рамка подсветится перед успешным добавлением • или нажми, чтобы выбрать файл</small></div><img id="imagePreview" class="hidden" alt="Предпросмотр картинки"></div>
@@ -267,7 +269,7 @@
 </dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
-<script src="app.js"></script>
-<script src="home-panels.js?v=20261003"></script>
+<script src="app.js?v=20261005"></script>
+<script src="home-panels.js?v=20261005"></script>
 </body>
 </html>
