@@ -11,13 +11,44 @@ const STATUS={idea:['Идея','idea'],planned:['Запланировано','pl
 let items=[];let filter='all';let search='';let formTags=[];
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+async function copyPrompt(text,button){
+  const value=String(text||'');
+  if(!value)return;
+  try{
+    if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(value);
+    else{
+      const area=document.createElement('textarea');area.value=value;area.setAttribute('readonly','');
+      area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();
+      document.execCommand('copy');area.remove();
+    }
+    const old=button.textContent;button.textContent='✓ Скопировано';button.classList.add('copied');
+    setTimeout(()=>{button.textContent=old;button.classList.remove('copied');},1400);
+  }catch(error){console.error(error);alert('Не удалось скопировать промт.');}
+}
 function makeField([key,label]){const wrap=document.createElement('label');wrap.dataset.detailField=key;wrap.textContent=label;const input=document.createElement('textarea');input.rows=3;input.id=`detail-${key}`;wrap.appendChild(input);return wrap;}
 function ensureCodexPromptField(){if($('#codexPromptWrap'))return;const root=$('#form .form-grid');if(!root)return;const label=document.createElement('label');label.id='codexPromptWrap';label.className='wide';label.textContent='Промт для Codex';const textarea=document.createElement('textarea');textarea.id='codexPrompt';textarea.rows=7;textarea.placeholder='Отдельный технический промт для реализации';label.appendChild(textarea);root.appendChild(label);}
 function setupForm(){$('#addItem').textContent=`+ ${C.add}`;const root=$('#detailFields');root.innerHTML='';C.fields.forEach(f=>root.appendChild(makeField(f)));ensureCodexPromptField();$('#codexPromptWrap')?.classList.remove('hidden');setupTags();setupImageUpload();}
 async function load(){const {data,error}=await sb.from('game_content').select('*').eq('kind',KIND).order('created_at',{ascending:false});if(error){$('#connection').textContent='Ошибка подключения';console.error(error);return}items=data||[];$('#connection').textContent='Общий режим • синхронизация включена';render();}
 function splitLegacyCodex(text=''){const re=/\(\s*Промпт\s+для\s+Codex\s*:/i;const match=re.exec(text);if(!match)return {main:String(text).trim(),codex:''};let codex=String(text).slice(match.index+match[0].length).trim();if(codex.endsWith(')'))codex=codex.slice(0,-1).trim();codex=codex.replace(/^[«“"]|[»”"]$/g,'').trim();return {main:String(text).slice(0,match.index).trim(),codex};}
 function parseStoredTags(value=''){return String(value).split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);}
-function render(){const root=$('#catalog');root.innerHTML='';const q=search.toLowerCase();const shown=items.filter(x=>(filter==='all'||x.status===filter)&&(!q||`${x.title} ${x.description} ${x.tags} ${JSON.stringify(x.details)}`.toLowerCase().includes(q)));if(!shown.length){root.innerHTML='<div class="empty-state">Пока ничего нет. Добавь первую запись.</div>';return}shown.forEach(item=>{const [statusText,statusClass]=STATUS[item.status]||STATUS.idea;const legacy=splitLegacyCodex(item.description||'');const description=legacy.main;const codex=item.details?.codexPrompt||item.details?.codex_prompt||legacy.codex||'';const details=C.fields.map(([key,label])=>item.details?.[key]?`<details class="detail-accordion"><summary>${esc(label)}</summary><div class="detail-content">${esc(item.details[key])}</div></details>`:'').join('');const tags=parseStoredTags(item.tags).map(x=>`<span class="tag">${esc(x)}</span>`).join('');const longDescription=description.length>420;const article=document.createElement('article');article.className='catalog-card';article.innerHTML=`<div class="catalog-head"><div class="catalog-image">${item.image_url?`<img src="${esc(item.image_url)}" alt="${esc(item.title)}">`:'<span>Изображение не добавлено</span>'}</div><div class="catalog-body"><div class="top"><span class="pill ${statusClass}">${statusText}</span><button class="edit">Изменить</button></div><h3>${esc(item.title)}</h3>${description?`<div class="catalog-description${longDescription?' is-clamped':''}">${esc(description)}</div>${longDescription?'<button type="button" class="text-toggle">Показать описание полностью</button>':''}`:''}${tags?`<div class="tag-row">${tags}</div>`:''}</div></div>${details?`<div class="detail-list">${details}</div>`:''}${codex?`<details class="codex-prompt"><summary>Промт для Codex</summary><div>${esc(codex)}</div></details>`:''}`;const img=article.querySelector('.catalog-image img');if(img)img.onerror=()=>{img.replaceWith(Object.assign(document.createElement('span'),{textContent:'Картинка не загрузилась'}));};const toggle=article.querySelector('.text-toggle');if(toggle)toggle.onclick=()=>{const block=article.querySelector('.catalog-description');const clamped=block.classList.toggle('is-clamped');toggle.textContent=clamped?'Показать описание полностью':'Свернуть описание';};article.querySelector('.edit').onclick=()=>edit(item);root.appendChild(article);});}
+function render(){
+  const root=$('#catalog');root.innerHTML='';const q=search.toLowerCase();
+  const shown=items.filter(x=>(filter==='all'||x.status===filter)&&(!q||`${x.title} ${x.description} ${x.tags} ${JSON.stringify(x.details)}`.toLowerCase().includes(q)));
+  if(!shown.length){root.innerHTML='<div class="empty-state">Пока ничего нет. Добавь первую запись.</div>';return}
+  shown.forEach(item=>{
+    const [statusText,statusClass]=STATUS[item.status]||STATUS.idea;
+    const legacy=splitLegacyCodex(item.description||'');const description=legacy.main;
+    const codex=item.details?.codexPrompt||item.details?.codex_prompt||legacy.codex||'';
+    const details=C.fields.map(([key,label])=>item.details?.[key]?`<details class="detail-accordion"><summary>${esc(label)}</summary><div class="detail-content">${esc(item.details[key])}</div></details>`:'').join('');
+    const tags=parseStoredTags(item.tags).map(x=>`<span class="tag">${esc(x)}</span>`).join('');
+    const longDescription=description.length>420;const article=document.createElement('article');article.className='catalog-card';
+    article.innerHTML=`<div class="catalog-head"><div class="catalog-image">${item.image_url?`<img src="${esc(item.image_url)}" alt="${esc(item.title)}">`:'<span>Изображение не добавлено</span>'}</div><div class="catalog-body"><div class="top"><span class="pill ${statusClass}">${statusText}</span><button class="edit">Изменить</button></div><h3>${esc(item.title)}</h3>${description?`<div class="catalog-description${longDescription?' is-clamped':''}">${esc(description)}</div>${longDescription?'<button type="button" class="text-toggle">Показать описание полностью</button>':''}`:''}${tags?`<div class="tag-row">${tags}</div>`:''}</div></div>${details?`<div class="detail-list">${details}</div>`:''}${codex?`<details class="codex-prompt"><summary>Промт для Codex</summary><div class="codex-prompt-body"><div class="codex-prompt-text">${esc(codex)}</div><button type="button" class="copy-codex">Скопировать весь промт</button></div></details>`:''}`;
+    const img=article.querySelector('.catalog-image img');if(img)img.onerror=()=>{img.replaceWith(Object.assign(document.createElement('span'),{textContent:'Картинка не загрузилась'}));};
+    const toggle=article.querySelector('.text-toggle');if(toggle)toggle.onclick=()=>{const block=article.querySelector('.catalog-description');const clamped=block.classList.toggle('is-clamped');toggle.textContent=clamped?'Показать описание полностью':'Свернуть описание';};
+    const copy=article.querySelector('.copy-codex');if(copy)copy.onclick=()=>copyPrompt(codex,copy);
+    article.querySelector('.edit').onclick=()=>edit(item);root.appendChild(article);
+  });
+}
 function syncTags(){$('#tags').value=formTags.join(', ');const chips=$('#tagChips');chips.innerHTML='';formTags.forEach((tag,index)=>{const chip=document.createElement('span');chip.className='tag-edit-chip';const text=document.createElement('span');text.textContent=tag;const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.title='Удалить тег';remove.onclick=()=>{formTags.splice(index,1);syncTags();};chip.append(text,remove);chips.appendChild(chip);});}
 function addTag(raw){const tag=String(raw||'').trim().replace(/\s+/g,' ');if(!tag)return;if(formTags.some(x=>x.toLocaleLowerCase('ru')===tag.toLocaleLowerCase('ru')))return;formTags.push(tag);syncTags();}
 function commitTagInput(){const input=$('#tagEntry');if(input?.value.trim()){addTag(input.value);input.value='';}}
