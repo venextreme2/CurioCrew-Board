@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Holy Ship! — сюжет на 20 островов, четыре главы и сценарная библиотека команды.">
+  <title>Holy Ship! — Сюжет и сценарная библиотека</title>
+  <link rel="stylesheet" href="styles.css?v=20261005">
+  <link rel="stylesheet" href="story.css?v=20261008">
+  <script defer src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+  <script defer src="story.js?v=20261008"></script>
+</head>
+<body class="story-page">
+<header>
+  <a class="brand" href="index.html"><h1>Holy Ship!</h1><p>Библиотека проекта</p></a>
+  <div class="header-actions">
+    <nav class="site-nav" aria-label="Главная навигация">
+      <a href="index.html">Разработка</a>
+      <a href="artifacts.html">Артефакты</a>
+      <a href="royal-artifacts.html">Королевские артефакты</a>
+      <a href="islands.html">Острова</a>
+      <a href="mobs.html">Мобы</a>
+      <a href="market.html">Рынок</a>
+      <a class="active" href="story.html" aria-current="page">Сюжет</a>
+      <a href="devlog.html">Дневник</a>
+    </nav>
+  </div>
+</header>
+
+<main class="story-main">
+  <section class="story-hero" aria-labelledby="storyHeading">
+    <div class="story-hero-copy">
+      <span class="eyebrow">Holy Ship! · Сценарий v0.1 · 08.10.2026</span>
+      <h2 id="storyHeading">За пределами <span>известных вод</span></h2>
+      <p>Одна большая история на двадцать островов. Для команды — короткое и понятное описание. Для библиотеки — подробный канон, кат-сцены, персонажи и технические правила для Codex.</p>
+      <div class="story-metrics" aria-label="Структура кампании">
+        <div><strong>20</strong><span>островов в релизе</span></div>
+        <div><strong>4</strong><span>сюжетные главы</span></div>
+        <div><strong>5</strong><span>островов в альфе</span></div>
+        <div><strong>5</strong><span>озвученных кат-сцен</span></div>
+      </div>
+    </div>
+    <div class="story-map-art" aria-hidden="true">
+      <div class="story-map-grid"></div>
+      <div class="map-route map-route-one"><span>01—05</span><i></i></div>
+      <div class="map-route map-route-two"><span>06—10</span><i></i></div>
+      <div class="map-route map-route-three"><span>11—15</span><i></i></div>
+      <div class="map-route map-route-four"><span>16—20</span><i></i></div>
+      <div class="map-center"><span>HOLY SHIP!</span><small>ARCHIPELAGO / CAMPAIGN</small></div>
+      <div class="map-compass">N <span>✦</span></div>
+    </div>
+  </section>
+
+  <nav class="story-tabs" role="tablist" aria-label="Два формата сценария">
+    <button class="story-tab active" type="button" id="storyTabTeam" role="tab"
+      aria-selected="true" aria-controls="storyTeam" data-story-tab="team">
+      <span class="tab-number">01</span> Коротко для команды
+      <small>Без воды · прочитать за пару минут</small>
+    </button>
+    <button class="story-tab" type="button" id="storyTabLibrary" role="tab"
+      aria-selected="false" aria-controls="storyLibrary" data-story-tab="library">
+      <span class="tab-number">02</span> Полная библиотека + Codex
+      <small>Спойлеры · документация разработки</small>
+    </button>
+  </nav>
+
+  <section id="storyTeam" class="story-panel" role="tabpanel" aria-labelledby="storyTabTeam">
+    <div class="story-section-head">
+      <div>
+        <span class="story-kicker">КРАТКАЯ ВЕРСИЯ / ДЛЯ ДВУХ РАЗРАБОТЧИКОВ</span>
+        <h2>О чём наша игра</h2>
+      </div>
+      <button id="copyTeam" class="story-subtle-action" type="button">Скопировать краткое описание</button>
+    </div>
+
+    <div id="storyTeamText">
+      <div class="story-lead">
+        <p><strong>Holy Ship!</strong> — кооперативное приключение на 1–4 игроков. Наша команда работает на короля: получает контракт, закупает припасы, плывёт на опасный остров, добывает необычные артефакты и возвращается за деньгами, званием и улучшениями корабля.</p>
+        <p>Король уверяет, что хочет вернуть утраченные морские пути. Постепенно выясняется, что он ищет связанные между собой древние реликвии, а разные острова когда-то были частью одной огромной системы. <strong>Почему она исчезла и для чего она нужна на самом деле — главная тайна всей игры.</strong></p>
+      </div>
+
+      <div class="story-heading-line"><h3>Четыре главы — одна история</h3><span>По 5 островов</span></div>
+      <div class="story-act-grid">
+        <article class="story-act current"><div class="story-act-top"><span>ГЛАВА I · ОСТРОВА 1–5</span><em>АЛЬФА</em></div><h4>Первый курс</h4><p>Знакомимся с миром и работой экспедиции, находим первые реликвии, замечаем странные совпадения. В конце открывается путь за край карты.</p></article>
+        <article class="story-act"><div class="story-act-top"><span>ГЛАВА II · ОСТРОВА 6–10</span><em>РЕЛИЗ</em></div><h4>Пропавшие маршруты</h4><p>Уходим дальше в неизвестные воды. Расследуем, кто исследовал их до нас и что умалчивает канцелярия.</p></article>
+        <article class="story-act"><div class="story-act-top"><span>ГЛАВА III · ОСТРОВА 11–15</span><em>РЕЛИЗ</em></div><h4>Цена спокойной воды</h4><p>Начинаем понимать, как работала древняя сеть и почему её восстановление может быть опасным.</p></article>
+        <article class="story-act"><div class="story-act-top"><span>ГЛАВА IV · ОСТРОВА 16–20</span><em>РЕЛИЗ</em></div><h4>Ничейный горизонт</h4><p>Добираемся до главного узла, узнаём всю историю и принимаем решение, которое изменит архипелаг.</p></article>
+      </div>
+
+      <div class="story-heading-line"><h3>Пять островов альфы</h3><span>Каждый играется по-своему</span></div>
+      <div class="story-island-grid">
+        <article><span class="story-island-number">01</span><h4>Зелёная Пасть</h4><p><b>Геймплей:</b> открытые джунгли, свобода высадки и исследования, руины, существа, ловушки.</p><p><b>Сюжет:</b> первые древние знаки и королевская реликвия.</p><small class="story-status live">Сцена существует</small></article>
+        <article><span class="story-island-number">02</span><h4>Погребённая Гавань</h4><p><b>Геймплей:</b> большой заброшенный порт, пещеры, фонари, Cave Stalker.</p><p><b>Сюжет:</b> следы прошлых искателей и ещё одна реликвия.</p><small class="story-status live">Сцена существует</small></article>
+        <article><span class="story-island-number">03</span><h4>Штормовой Клык</h4><p><b>Геймплей:</b> вариант — тащим тяжёлую тележку через скалы и шторм.</p><p><b>Сюжет:</b> старая сигнальная станция связана с другими островами.</p><small class="story-status draft">Механика обсуждается</small></article>
+        <article><span class="story-island-number">04</span><h4>Песчаная Корона</h4><p><b>Геймплей:</b> вариант — длинный сплав/плавание по реке через каньоны.</p><p><b>Сюжет:</b> древние водные пути и неизвестные координаты.</p><small class="story-status draft">Механика обсуждается</small></article>
+        <article><span class="story-island-number">05</span><h4>Мангровая Пасть</h4><p><b>Геймплей:</b> вариант — болото, туман, звуковые ориентиры, хитрые проходы.</p><p><b>Сюжет:</b> пятая реликвия и открытие нового участка карты.</p><small class="story-status draft">Механика обсуждается</small></article>
+      </div>
+    </div>
+
+    <div class="story-bottom-grid">
+      <article class="story-rule-card">
+        <h3>Как заканчивается альфа</h3>
+        <p>Команда приносит королю пятую реликвию. На навигационном столе загорается неизвестный маршрут за пределы существующей карты. Король, похоже, узнаёт направление. <strong>Это конец первой главы, а не всей игры.</strong></p>
+        <p class="story-rule-foot">Игрок <b>не узнаёт</b> главную тайну, судьбу прошлой экспедиции и то, чем закончится история.</p>
+      </article>
+      <article class="story-rule-card">
+        <h3>Диалоги и озвучка</h3>
+        <p>Все обычные NPC — текстовый HUD и нынешние короткие звуки разговора. Озвученные реплики покупаем только для кат-сцен: <b>вступление</b> и <b>окончание каждой из четырёх глав</b>.</p>
+        <p class="story-rule-foot">Для альфы нужны только две постановки: <b>C0</b> (старт) и <b>C1</b> (после острова 5).</p>
+      </article>
+    </div>
+
+    <div class="story-team-footer">
+      <p><b>Общий принцип:</b> 20 островов — не 20 копий одной карты. Сюжет связывает экспедиции, но у каждого острова своё главное действие. Первые два исследуем подробно; форматы остальных меняем ради новых впечатлений.</p>
+      <button id="openLibrary" type="button" class="story-primary-action">Открыть подробную библиотеку →</button>
+    </div>
+  </section>
+
+  <section id="storyLibrary" class="story-panel" role="tabpanel" aria-labelledby="storyTabLibrary" hidden>
+    <div class="story-section-head">
+      <div><span class="story-kicker">РАБОЧИЙ КАНОН · ПОДРОБНО · ДЛЯ CODEX</span><h2>Сценарная библиотека</h2></div>
+      <span class="story-library-version">Редакция 0.1 · 08.10.2026</span>
+    </div>
+    <p class="story-note"><b>Внимание: полные сюжетные спойлеры до острова 20.</b> Этот раздел предназначен разработчикам, а не игрокам. Страница сайта публичная, поэтому это предупреждение не является защитой доступа.</p>
+
+    <div class="story-library-intro">
+      <p><strong>Ниже — полные девять документов</strong>, перенесённых из сценарной ветки игрового репозитория. Их можно читать прямо здесь, открыть в виде Markdown или скопировать для Codex. Это не только краткий пересказ: сохранены оригинальные главы, события, персонажи, диалоги кат-сцен и технические требования.</p>
+      <p><b>Источник:</b> <a href="https://github.com/venextreme2/Curio-Crew/tree/narrative/story-bible-alpha-20261008/Documentation/Narrative" target="_blank" rel="noopener noreferrer">Curio-Crew / narrative/story-bible-alpha-20261008</a>. Содержимое сайта — опубликованный снимок v0.1; не автоматически синхронизируется с игровым репозиторием.</p>
+    </div>
+
+    <div class="story-codex-panel" aria-labelledby="codexHeading">
+      <div>
+        <span class="story-kicker">РАБОЧИЙ КОНТЕКСТ ДЛЯ CODEX</span>
+        <h3 id="codexHeading">Передать сюжет агенту без пересказов</h3>
+        <p>Первый вариант — короткие правила для обычной задачи. Второй — все девять документов целиком для работы с сюжетом и кат-сценами. Промты не поручают Codex менять проект без конкретной задачи.</p>
+      </div>
+      <div class="story-codex-buttons">
+        <button id="copyCodexBrief" class="story-primary-action" type="button">Скопировать контекст Codex</button>
+        <button id="copyCodexFull" class="story-subtle-action" type="button">Скопировать всю библиотеку</button>
+      </div>
+      <p class="story-small">В полном пакете есть спойлеры концовки. Для локального environment/HUD-фикса обычно достаточно краткого контекста.</p>
+    </div>
+
+    <div class="story-library-layout">
+      <aside class="story-doc-sidebar" aria-labelledby="documentsHeading">
+        <div class="story-doc-sidebar-head"><h3 id="documentsHeading">Документы</h3><span>9 файлов</span></div>
+        <label class="story-search-label" for="storyDocSearch">Найти раздел</label>
+        <input id="storyDocSearch" type="search" placeholder="История, NPC, кат-сцены…" autocomplete="off">
+        <nav class="story-doc-list" id="storyDocList" aria-label="Разделы сценарной библиотеки">
+          <a class="story-doc-link selected" href="story/library/README.md" data-doc="README.md"><b>00</b><span><strong>Как пользоваться</strong><small>Статусы, структура, источники</small></span></a>
+          <a class="story-doc-link" href="story/library/StoryBible.md" data-doc="StoryBible.md"><b>01</b><span><strong>Мир и общий сюжет</strong><small>Полный канон, история, тайна</small></span></a>
+          <a class="story-doc-link" href="story/library/FullCampaign.md" data-doc="FullCampaign.md"><b>02</b><span><strong>Все 20 островов</strong><small>Четыре главы, развитие тайны</small></span></a>
+          <a class="story-doc-link" href="story/library/AlphaCampaign.md" data-doc="AlphaCampaign.md"><b>03</b><span><strong>Альфа: острова 1–5</strong><small>Контракты, маршруты, события</small></span></a>
+          <a class="story-doc-link" href="story/library/Characters.md" data-doc="Characters.md"><b>04</b><span><strong>Персонажи</strong><small>Король, жители, торговцы</small></span></a>
+          <a class="story-doc-link" href="story/library/NpcDialogueAudit.md" data-doc="NpcDialogueAudit.md"><b>05</b><span><strong>NPC и диалоговый HUD</strong><small>62 диалога, звуки и ограничения</small></span></a>
+          <a class="story-doc-link" href="story/library/IntroCutscene.md" data-doc="IntroCutscene.md"><b>06</b><span><strong>Вступление C0</strong><small>Кадры, реплики, озвучка</small></span></a>
+          <a class="story-doc-link" href="story/library/ChapterCutscenes.md" data-doc="ChapterCutscenes.md"><b>07</b><span><strong>Кат-сцены C1–C4</strong><small>Концовка альфы и три главы</small></span></a>
+          <a class="story-doc-link" href="story/library/NarrativeProgress.md" data-doc="NarrativeProgress.md"><b>08</b><span><strong>Техническая интеграция</strong><small>Codex, FishNet, сейвы, условия</small></span></a>
+        </nav>
+        <p id="storyNoResults" class="story-no-results" hidden>По этому запросу документов нет.</p>
+      </aside>
+      <div class="story-doc-reader">
+        <div class="story-doc-toolbar">
+          <div><span class="story-kicker" id="storyDocEyebrow">СТРУКТУРА БИБЛИОТЕКИ</span><h3 id="storyDocTitle">Как пользоваться</h3></div>
+          <div class="story-doc-actions">
+            <button id="copyStoryDoc" type="button" class="story-subtle-action">Копировать документ</button>
+            <a id="storyRawLink" class="story-file-link" href="story/library/README.md" target="_blank" rel="noopener noreferrer">Открыть .md ↗</a>
+          </div>
+        </div>
+        <p id="storyDocState" class="story-doc-state" role="status">Загрузка библиотеки…</p>
+        <article id="storyDocBody" class="story-markdown" aria-label="Текст сценарного документа"></article>
+      </div>
+    </div>
+
+    <div class="story-footer-note">
+      <b>Важно для реализации:</b> документация описывает задуманный сюжет, а не готовые механики. В рабочей <code>develop</code> сейчас построены острова 1–2 и система текстовых NPC, а интеграция кат-сцен и сюжетных флагов ещё не выполнялась. При реализации не переписывать FishNet, HUD, звуки NPC и доску миссий с нуля.
+    </div>
+  </section>
+
+  <div id="storyToast" class="story-toast" role="status" aria-live="polite"></div>
+  <noscript><p class="story-noscript">Для встроенного просмотра полной библиотеки нужен JavaScript. Все документы также доступны по прямым адресам <a href="story/library/StoryBible.md">StoryBible.md</a> и <a href="story/library/AlphaCampaign.md">AlphaCampaign.md</a>.</p></noscript>
+</main>
+</body>
+</html>
