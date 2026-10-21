@@ -15,6 +15,8 @@
   const taskDone=document.querySelector('#taskDone');
   const taskDoing=document.querySelector('#taskDoing');
   const artifactCount=document.querySelector('#artifactCount');
+  const marketCount=document.querySelector('#marketCount');
+  const marketPriceSpan=document.querySelector('#marketPriceSpan');
   const completionValues=[...document.querySelectorAll('.project-completion-value')];
   const completionMeters=[...document.querySelectorAll('.project-completion-meter span')];
   const completionCaptions=[...document.querySelectorAll('.project-completion-caption')];
@@ -42,10 +44,11 @@
 
 
   async function loadProjectStats(){
-    if(!taskTotal&&!taskDone&&!taskDoing&&!artifactCount)return;
-    const [{data:taskRows,error:taskError},{count:artifacts,error:artifactError}]=await Promise.all([
+    if(!taskTotal&&!taskDone&&!taskDoing&&!artifactCount&&!marketCount&&!marketPriceSpan)return;
+    const [{data:taskRows,error:taskError},{count:artifacts,error:artifactError},{data:marketRows,error:marketError}]=await Promise.all([
       homeSb.from('tasks').select('status'),
-      homeSb.from('game_content').select('id',{count:'exact',head:true}).eq('kind','artifact')
+      homeSb.from('game_content').select('id',{count:'exact',head:true}).eq('kind','artifact'),
+      homeSb.from('market_items').select('price,implementation')
     ]);
     if(!taskError&&Array.isArray(taskRows)){
       const done=taskRows.filter(row=>row.status==='done').length;
@@ -61,6 +64,12 @@
     }else if(taskError)console.error(taskError);
     if(!artifactError&&artifactCount&&Number.isFinite(artifacts))artifactCount.textContent=String(artifacts);
     else if(artifactError)console.error(artifactError);
+    if(!marketError&&Array.isArray(marketRows)){
+      if(marketCount)marketCount.textContent=String(marketRows.length);
+      const prices=marketRows.map(x=>Number(x.price)).filter(Number.isFinite);
+      if(marketPriceSpan&&prices.length)marketPriceSpan.textContent=`${Math.min(...prices).toLocaleString('ru-RU')}–${Math.max(...prices).toLocaleString('ru-RU')}`;
+      else if(marketPriceSpan)marketPriceSpan.textContent='—';
+    }else if(marketError)console.error(marketError);
   }
 
   async function loadDates(){
