@@ -16,6 +16,8 @@
   const taskDoing=document.querySelector('#taskDoing');
   const artifactCount=document.querySelector('#artifactCount');
   const marketCount=document.querySelector('#marketCount');
+  const islandCount=document.querySelector('#islandCount');
+  const mobCount=document.querySelector('#mobCount');
   const marketPriceSpan=document.querySelector('#marketPriceSpan');
   const completionValues=[...document.querySelectorAll('.project-completion-value')];
   const completionMeters=[...document.querySelectorAll('.project-completion-meter span')];
@@ -44,11 +46,13 @@
 
 
   async function loadProjectStats(){
-    if(!taskTotal&&!taskDone&&!taskDoing&&!artifactCount&&!marketCount&&!marketPriceSpan)return;
-    const [{data:taskRows,error:taskError},{count:artifacts,error:artifactError},{data:marketRows,error:marketError}]=await Promise.all([
+    if(!taskTotal&&!taskDone&&!taskDoing&&!artifactCount&&!marketCount&&!marketPriceSpan&&!islandCount&&!mobCount)return;
+    const [{data:taskRows,error:taskError},{count:artifacts,error:artifactError},{data:marketRows,error:marketError},{count:islands,error:islandError},{count:mobs,error:mobError}]=await Promise.all([
       homeSb.from('tasks').select('status'),
       homeSb.from('game_content').select('id',{count:'exact',head:true}).eq('kind','artifact'),
-      homeSb.from('market_items').select('price,implementation')
+      homeSb.from('market_items').select('price,implementation'),
+      homeSb.from('game_content').select('id',{count:'exact',head:true}).eq('kind','island'),
+      homeSb.from('game_content').select('id',{count:'exact',head:true}).eq('kind','mob')
     ]);
     if(!taskError&&Array.isArray(taskRows)){
       const done=taskRows.filter(row=>row.status==='done').length;
@@ -70,6 +74,10 @@
       if(marketPriceSpan&&prices.length)marketPriceSpan.textContent=`${Math.min(...prices).toLocaleString('ru-RU')}–${Math.max(...prices).toLocaleString('ru-RU')}`;
       else if(marketPriceSpan)marketPriceSpan.textContent='—';
     }else if(marketError)console.error(marketError);
+    if(!islandError&&islandCount&&Number.isFinite(islands))islandCount.textContent=String(islands);
+    else if(islandError)console.error(islandError);
+    if(!mobError&&mobCount&&Number.isFinite(mobs))mobCount.textContent=String(mobs);
+    else if(mobError)console.error(mobError);
   }
 
   async function loadDates(){
